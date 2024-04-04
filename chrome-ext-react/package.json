@@ -12,8 +12,27 @@
     "build-win": "vite build && copy src\\manifest.json dist\\"
   },
   "dependencies": {
+    "@mantine/carousel": "^7.7.1",
+    "@mantine/charts": "^7.7.1",
+    "@mantine/code-highlight": "^7.7.1",
+    "@mantine/core": "^7.7.1",
+    "@mantine/dates": "^7.7.1",
+    "@mantine/dropzone": "^7.7.1",
+    "@mantine/form": "^7.7.1",
+    "@mantine/hooks": "^7.7.1",
+    "@mantine/modals": "^7.7.1",
+    "@mantine/notifications": "^7.7.1",
+    "@mantine/nprogress": "^7.7.1",
+    "@mantine/spotlight": "^7.7.1",
+    "@tanstack/react-query": "^5.28.14",
+    "@web3modal/wagmi": "^4.1.4",
+    "dayjs": "^1.11.10",
+    "embla-carousel-react": "^8.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "recharts": "^2.12.3",
+    "viem": "^2.9.7",
+    "wagmi": "^2.5.18"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -23,6 +42,9 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "postcss": "^8.4.38",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
     "vite": "^5.2.0"
   }
 }
