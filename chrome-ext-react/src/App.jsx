@@ -1,17 +1,18 @@
-import { Box, Button, Flex, useMantineColorScheme, Title} from '@mantine/core'
+import { Box, Button, Flex, useMantineColorScheme, Title, Input} from '@mantine/core'
 
 // Contains the the extension and its sizing
 function App() {
 
-  useMantineColorScheme("dark")
+  useMantineColorScheme("light")
 
   return (
-    <Box w={"280px"} bg={"dark"}>
+    <Box w={"256px"}>
       <Flex direction={"column"} gap={"48px"} align={"center"} p={"32px"}>
         <Title order={1} size={"h1"} c={"orange"}>
           ProfitPeak
         </Title>
-        <Button color={"orange"} radius={"md"} size="md">Connect Wallet</Button>
+        <Input variant="filled" size="md" radius="md" placeholder="Wallet Key" />
+        <Button color={"orange"} radius={"md"} size="md" mt={"-18px"}>Connect Wallet</Button>
       </Flex>
     </Box>
   )
