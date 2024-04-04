@@ -1,0 +1,5 @@
+.m_2415a157 {
+  display: grid;
+  grid-template-columns: repeat(var(--sg-cols), minmax(0, 1fr));
+  gap: var(--sg-spacing-y) var(--sg-spacing-x);
+}
