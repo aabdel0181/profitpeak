@@ -1,8 +1,35 @@
-import React from 'react'
-
+import { useState } from 'react';
 import { Box, Button, Flex, useMantineColorScheme, Title, Input, Divider} from '@mantine/core'
 
 export default function ConnectPage(props) {
+
+    const [walletKeyValid, setWalletKeyValid] = useState(true);
+    const [apiKeyValid, setApiKeyValid] = useState(true);
+
+    const validateWalletKey = (walletKey) => {
+        if (walletKey.length < 20) {
+        return false;
+        }
+    }
+
+    const validateApiKey = (apiKey) => {
+        if (apiKey.length < 20) {
+        return false;
+        }
+    }
+
+    const onConnectClick = (walletKey, apiKey, setLoggedIn) => {
+        if (validateWalletKey(walletKey) && validateApiKey(apiKey)) {
+            localStorage.setItem('walletKey', walletKey);
+            localStorage.setItem('apiKey', apiKey);
+
+            setLoggedIn(true);
+        } else {
+            setWalletKeyValid(false);
+            setApiKeyValid(false);
+        }
+    }
+
   return (
     <Box w={"256px"}>
         <Flex direction={"column"} gap={"24px"} align={"center"} p={"32px"}>
@@ -23,6 +50,7 @@ export default function ConnectPage(props) {
               e.preventDefault();
               props.setWalletKey(e.target.value);
             }} 
+            error={!walletKeyValid}
           />
           <Input 
             variant="filled" 
@@ -34,12 +62,15 @@ export default function ConnectPage(props) {
               e.preventDefault();
               props.setApiKey(e.target.value);
             }}
+            error={!apiKeyValid}
           />
           <Button 
             color={"blue"} 
             radius={"md"} 
             size="md"
-            onClick={() => {props.setLoggedIn(true)}}>Connect Wallet</Button>
+            onClick={() => {
+                onConnectClick(props.walletKey, props.apiKey, props.setLoggedIn)
+            }}>Connect Wallet</Button>
         </Flex>
       </Box>
   )
