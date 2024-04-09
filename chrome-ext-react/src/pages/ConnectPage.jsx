@@ -7,15 +7,11 @@ export default function ConnectPage(props) {
     const [apiKeyValid, setApiKeyValid] = useState(true);
 
     const validateWalletKey = (walletKey) => {
-        if (walletKey.length < 20) {
-        return false;
-        }
+        return (walletKey.length >= 20);
     }
 
     const validateApiKey = (apiKey) => {
-        if (apiKey.length < 20) {
-        return false;
-        }
+        return (apiKey.length >= 20);
     }
 
     const onConnectClick = (walletKey, apiKey, setLoggedIn) => {
