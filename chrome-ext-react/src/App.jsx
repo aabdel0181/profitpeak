@@ -1,10 +1,9 @@
 import { Box, Button, Flex, useMantineColorScheme, Title, Input, Divider} from '@mantine/core'
 import { useState, useEffect } from 'react'
-
 import ConnectPage from './pages/ConnectPage';
 import HomePage from './pages/HomePage';
-
-// Contains the the extension and its sizing
+import Transactions from './pages/Transactions';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 
   useMantineColorScheme("light")
@@ -31,26 +30,41 @@ function App() {
       setLoggedIn(true);
     }
   }, []);
-  
-  if (!loggedIn) {
-      return (
-        <ConnectPage 
+
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes> 
+          <Route exact path="/" element={<ConnectPage 
           walletKey={walletKey}
           setWalletKey={setWalletKey} 
           apiKey={apiKey} 
           setApiKey={setApiKey} 
-          setLoggedIn={setLoggedIn} 
-        />
-      )
-    } else {
-      return (
-        <>
-          <HomePage />
-        <div>{test}</div>
-        </>
-        
-      )
-    }
+          setLoggedIn={setLoggedIn} />} />
+          <Route path="/transactions" element={<Transactions />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+  
+  // if (!loggedIn) {
+  //     return (
+  //       <ConnectPage 
+  //         walletKey={walletKey}
+  //         setWalletKey={setWalletKey} 
+  //         apiKey={apiKey} 
+  //         setApiKey={setApiKey} 
+  //         setLoggedIn={setLoggedIn} 
+  //       />
+  //     )
+  //   } else {
+  //     return (
+  //       <>
+  //         <HomePage />
+  //       <div>{test}</div>
+  //       </>
+  //     )
+  //   }
   
 }
 

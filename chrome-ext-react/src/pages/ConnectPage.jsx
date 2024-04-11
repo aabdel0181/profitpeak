@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Box, Button, Flex, useMantineColorScheme, Title, Input, Divider} from '@mantine/core'
+import { useNavigate } from 'react-router-dom';
 
 export default function ConnectPage(props) {
 
     const [walletKeyValid, setWalletKeyValid] = useState(true);
     const [apiKeyValid, setApiKeyValid] = useState(true);
+    const navigate = useNavigate();
 
     const validateWalletKey = (walletKey) => {
         return (walletKey.length >= 20);
@@ -18,9 +20,10 @@ export default function ConnectPage(props) {
         if (validateWalletKey(walletKey) && validateApiKey(apiKey)) {
             localStorage.setItem('walletKey', walletKey);
             localStorage.setItem('apiKey', apiKey);
-
             setLoggedIn(true);
+            navigate('/transactions');
         } else {
+            navigate('/transactions'); // remove this line but for now testing!!!!!
             setWalletKeyValid(false);
             setApiKeyValid(false);
         }
@@ -61,13 +64,16 @@ export default function ConnectPage(props) {
             error={!apiKeyValid}
           />
           <Button 
-            color={"blue"} 
-            radius={"md"} 
-            size="md"
-            onClick={() => {
-                onConnectClick(props.walletKey, props.apiKey, props.setLoggedIn)
-            }}>Connect Wallet</Button>
+              color={"blue"} 
+              radius={"md"} 
+              size="md"
+              onClick={() => {
+                  onConnectClick(props.walletKey, props.apiKey, props.setLoggedIn)
+              }}>
+              Connect Wallet
+          </Button>
         </Flex>
       </Box>
   )
 }
+
