@@ -1,12 +1,19 @@
-import { Box, Button, Flex, useMantineColorScheme, Title, Input, Divider} from '@mantine/core'
-import { useState, useEffect } from 'react'
-import ConnectPage from './pages/ConnectPage';
-import HomePage from './pages/HomePage';
-import Transactions from './pages/Transactions';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Flex,
+  useMantineColorScheme,
+  Title,
+  Input,
+  Divider,
+} from "@mantine/core";
+import { useState, useEffect } from "react";
+import ConnectPage from "./pages/ConnectPage";
+import HomePage from "./pages/HomePage";
+import Transactions from "./pages/Transactions";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 function App() {
-
-  useMantineColorScheme("light")
+  useMantineColorScheme("light");
 
   const [walletKey, setWalletKey] = useState("");
   const [apiKey, setApiKey] = useState("");
@@ -17,8 +24,8 @@ function App() {
 
   useEffect(() => {
     // Check if 'walletKey' exists in localStorage when the component mounts
-    const storedWalletKey = localStorage.getItem('walletKey');
-    const storedApiKey = localStorage.getItem('apiKey');
+    const storedWalletKey = localStorage.getItem("walletKey");
+    const storedApiKey = localStorage.getItem("apiKey");
     if (storedWalletKey) {
       setWalletKey(storedWalletKey);
     }
@@ -33,28 +40,35 @@ function App() {
 
   return (
     <div>
-      <BrowserRouter>
-        <Routes> 
-          <Route exact path="/" element={<ConnectPage 
-          walletKey={walletKey}
-          setWalletKey={setWalletKey} 
-          apiKey={apiKey} 
-          setApiKey={setApiKey} 
-          setLoggedIn={setLoggedIn} />} />
+      <MemoryRouter >
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <ConnectPage
+                walletKey={walletKey}
+                setWalletKey={setWalletKey}
+                apiKey={apiKey}
+                setApiKey={setApiKey}
+                setLoggedIn={setLoggedIn}
+              />
+            }
+          />
           <Route path="/transactions" element={<Transactions />} />
         </Routes>
-      </BrowserRouter>
+      </MemoryRouter >
     </div>
   );
-  
+
   // if (!loggedIn) {
   //     return (
-  //       <ConnectPage 
+  //       <ConnectPage
   //         walletKey={walletKey}
-  //         setWalletKey={setWalletKey} 
-  //         apiKey={apiKey} 
-  //         setApiKey={setApiKey} 
-  //         setLoggedIn={setLoggedIn} 
+  //         setWalletKey={setWalletKey}
+  //         apiKey={apiKey}
+  //         setApiKey={setApiKey}
+  //         setLoggedIn={setLoggedIn}
   //       />
   //     )
   //   } else {
@@ -65,7 +79,6 @@ function App() {
   //       </>
   //     )
   //   }
-  
 }
 
-export default App
+export default App;
