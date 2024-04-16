@@ -9,6 +9,14 @@ async function async_get_txs(api_key, address, start_date) {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
+    // console.log(data);
+    // only get transactions using uniswap: 
+    data.result = data.result.filter(transaction => {
+      return transaction.from === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD' || transaction.to === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD';
+    });
+    data.result.forEach(transaction => {
+      transaction.timeStamp = new Date(parseInt(transaction.timeStamp, 10) * 1000);
+    });
     console.log(data);
     return data; // Return the parsed JSON data
   } catch (error) {
