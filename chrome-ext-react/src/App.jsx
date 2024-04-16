@@ -56,6 +56,7 @@ function App() {
             }
           />
           <Route path="/transactions" element={<Transactions />} />
+          <Route path="/home" element={<HomePage />} />
         </Routes>
       </MemoryRouter >
     </div>

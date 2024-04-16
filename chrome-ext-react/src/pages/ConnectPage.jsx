@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button, Flex, Title, Input, Divider } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
@@ -21,13 +21,29 @@ export default function ConnectPage(props) {
       localStorage.setItem("walletKey", walletKey);
       localStorage.setItem("apiKey", apiKey);
       setLoggedIn(true);
-      navigate("/transactions");
+      navigate("/home");
     } else {
-      navigate("/transactions"); // remove this line but for now testing!!!!!
+      // navigate("/home"); // remove this line but for now testing!!!!!
       setWalletKeyValid(false);
       setApiKeyValid(false);
     }
   };
+
+
+  // Auto login/connect if api and walletkey are present
+  useEffect(() => {
+    
+    const wKey = localStorage.getItem("walletKey");
+    const aKey = localStorage.getItem("apiKey"); 
+
+    if (wKey && aKey) {
+      navigate("/home");
+    }
+
+  
+    return () => {}
+  }, [])
+  
 
   return (
     <Box w={"256px"}>
