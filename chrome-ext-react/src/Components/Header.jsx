@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import {
-  Box,
-  Button,
   Flex,
-  useMantineColorScheme,
-  Title,
-  Input,
-  Divider,
   ActionIcon,
-  Grid,
   Text,
   ThemeIcon,
-  HoverCard,
+  Popover,
   Transition,
 } from "@mantine/core";
 
-import { IconLogout, IconCopy } from "@tabler/icons-react";
+import { IconLogout, IconCopy, IconHome } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useHover } from "@mantine/hooks";
 
@@ -42,6 +35,10 @@ export default function Header() {
     navigate("/");
   };
 
+  const onClickHome = () => {
+    navigate("/home");
+  };
+
   const copyWalletKey = () => {
     navigator.clipboard.writeText(walletKey);
     setWalletKeyCopied(true);
@@ -57,7 +54,6 @@ export default function Header() {
         console.log("Clipboard value:", clipboardText);
         return clipboardText;
       } catch (error) {
-        console.error("Failed to read from clipboard:", error);
         return null;
       }
     };
@@ -82,12 +78,32 @@ export default function Header() {
         style={{ boxShadow: "0px 6px 4px rgba(0, 0, 0, 0.1)" }}
         pt={"2px"}
       >
-        <Flex w={"65px"} style={{ flexGrow: "1" }}>
-          add btn here
+        <Flex
+          w={"65px"}
+          style={{ flexGrow: "1" }}
+          align={"center"}
+          justify={"center"}
+        >
+          <ActionIcon
+            variant="light"
+            aria-label="Logout"
+            pos={"relative"}
+            top={"0px"}
+            right={"0px"}
+            onClick={onClickHome}
+          >
+            <IconHome style={{ width: "70%", height: "70%" }} stroke={1.5} />
+          </ActionIcon>
         </Flex>
         <Flex align={"center"} justify={"center"} style={{ flexGrow: "2" }}>
-          <HoverCard width={"128px"} shadow="md">
-            <HoverCard.Target>
+          <Popover
+            width={"98px"}
+            shadow="md"
+            position="right"
+            opened={hovered}
+            withArrow
+          >
+            <Popover.Target>
               <Flex
                 ref={ref}
                 bg={hovered ? "#f8f8f8" : "white"}
@@ -112,7 +128,7 @@ export default function Header() {
                   />
                 </ThemeIcon>
               </Flex>
-            </HoverCard.Target>
+            </Popover.Target>
 
             <Transition
               mounted={hovered}
@@ -121,7 +137,7 @@ export default function Header() {
               timingFunction="ease"
             >
               {(styles) => (
-                <HoverCard.Dropdown
+                <Popover.Dropdown
                   p={"4px"}
                   style={{
                     display: "flex",
@@ -130,14 +146,12 @@ export default function Header() {
                   }}
                 >
                   <Text size="xs" style={{ userSelect: "none" }}>
-                    {walletKeyCopied
-                      ? "Wallet key copied!"
-                      : "Copy to clipboard!"}
+                    {walletKeyCopied ? "Address copied" : "Copy address"}
                   </Text>
-                </HoverCard.Dropdown>
+                </Popover.Dropdown>
               )}
             </Transition>
-          </HoverCard>
+          </Popover>
         </Flex>
         <Flex
           w={"65px"}

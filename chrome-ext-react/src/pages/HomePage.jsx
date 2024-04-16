@@ -26,7 +26,7 @@ export default function HomePage() {
     };
 
     return (
-        <Box w={"328px"} h={"480px"}>
+        <Box w={"384px"} h={"480px"}>
           <Header />
         </Box>
     );
