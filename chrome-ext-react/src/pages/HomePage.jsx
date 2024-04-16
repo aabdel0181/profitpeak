@@ -13,6 +13,9 @@ import {
 
 import { IconLogout } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
+
+import Header from "../Components/Header";
+
 export default function HomePage() {
     const navigate = useNavigate();
 
@@ -24,26 +27,7 @@ export default function HomePage() {
 
     return (
         <Box w={"328px"} h={"480px"}>
-            <Flex direction={"column"} gap={"24px"} align={"center"} p={"32px"}>
-                <Title order={1} size={"h1"} c={"blue"} mb={"-18px"}>
-                    ProfitPeak
-                </Title>
-                <Divider my="xs" w={"100%"} />
-            </Flex>
-
-            <ActionIcon
-                variant="light"
-                aria-label="Settings"
-                pos={"absolute"}
-                top={"16px"}
-                right={"20px"}
-                onClick={onClickLogout}
-            >
-                <IconLogout
-                    style={{ width: "70%", height: "70%" }}
-                    stroke={1.5}
-                />
-            </ActionIcon>
+          <Header />
         </Box>
     );
 }
