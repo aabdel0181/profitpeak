@@ -6,6 +6,8 @@ import {
   Divider,
   Table,
   ScrollArea,
+  Text,
+  Popover,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 
@@ -15,6 +17,7 @@ import {
   get_balance,
   async_get_txs,
   formatRelativeTime,
+  timestampToLocalTime,
 } from "../utils/abitrum_test_calls";
 
 export default function HomePage() {
@@ -24,6 +27,7 @@ export default function HomePage() {
   const [apiKey, setApiKey] = useState("");
   const [walletBalance, setWalletBalance] = useState("");
   const [transactions, setTransactions] = useState([]);
+  const [hoveredToFromIndex, setHoveredToFromIndex] = useState(null);
 
   const shortenStr = (str) => {
     if (str.length > 8) {
@@ -170,17 +174,30 @@ export default function HomePage() {
                   <Table.Tr>
                     <Table.Th>Txn</Table.Th>
                     <Table.Th>Block #</Table.Th>
-                    <Table.Th>Time</Table.Th>
+                    <Table.Th pr={"32px"}>Time</Table.Th>
                     <Table.Th>To</Table.Th>
                     <Table.Th>From</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
-                  {transactions.map((item) => (
+                  {transactions.map((item, index) => (
                     <Table.Tr key={item.timeStamp}>
                       <Table.Td>{shortenStr(item.hash)}</Table.Td>
                       <Table.Td>{shortenStr(item.blockNumber)}</Table.Td>
-                      <Table.Td>{formatRelativeTime(item.timeStamp)}</Table.Td>
+                      <Table.Td>
+                        <Popover position="bottom" withArrow shadow="md">
+                          <Popover.Target>
+                            <Text style={{ cursor: "pointer" }}>
+                              {formatRelativeTime(item.timeStamp)}
+                            </Text>
+                          </Popover.Target>
+                          <Popover.Dropdown width={180} p={8}>
+                            <Text size="sm">
+                              {timestampToLocalTime(item.timeStamp)}
+                            </Text>
+                          </Popover.Dropdown>
+                        </Popover>
+                      </Table.Td>
                       <Table.Td>
                         {item.to.toLowerCase() === walletKey.toLowerCase() ? (
                           <Box
@@ -195,7 +212,23 @@ export default function HomePage() {
                             {shortenStr(item.to)}
                           </Box>
                         ) : (
-                          shortenStr(item.to)
+                          <Box
+                            px={"5px"}
+                            py={"2px"}
+                            style={{
+                              borderRadius: "12px",
+                              cursor: "pointer",
+                            }}
+                            bg={
+                              hoveredToFromIndex == index
+                                ? "#e2e2e2"
+                                : "#ffffff00"
+                            }
+                            onMouseEnter={() => setHoveredToFromIndex(index)}
+                            onMouseLeave={() => setHoveredToFromIndex(null)}
+                          >
+                            {shortenStr(item.to)}
+                          </Box>
                         )}
                       </Table.Td>
                       <Table.Td>
@@ -212,7 +245,23 @@ export default function HomePage() {
                             {shortenStr(item.from)}
                           </Box>
                         ) : (
-                          shortenStr(item.from)
+                          <Box
+                            px={"5px"}
+                            py={"2px"}
+                            style={{
+                              borderRadius: "12px",
+                              cursor: "pointer",
+                            }}
+                            bg={
+                              hoveredToFromIndex == index
+                                ? "#e2e2e2"
+                                : "#ffffff00"
+                            }
+                            onMouseEnter={() => setHoveredToFromIndex(index)}
+                            onMouseLeave={() => setHoveredToFromIndex(null)}
+                          >
+                            {shortenStr(item.from)}
+                          </Box>
                         )}
                       </Table.Td>
                     </Table.Tr>

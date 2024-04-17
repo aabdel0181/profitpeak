@@ -58,7 +58,23 @@ export const formatRelativeTime = (timestamp) => {
   }
 };
 
-// Example usage:
-const timestamp = 1712693844; // Example timestamp
-const relativeTime = formatRelativeTime(timestamp);
-console.log(relativeTime); // Output: "3 weeks ago" (or whatever the calculated relative time is)
+export const timestampToLocalTime = (timestamp) => {
+  // Convert Unix timestamp to milliseconds by multiplying by 1000
+  const milliseconds = timestamp * 1000;
+
+  // Create a new Date object with the milliseconds
+  const dateObject = new Date(milliseconds);
+
+  // Format the date and time into a string
+  const formattedDate = dateObject.toLocaleString(undefined, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
+  // Return the formatted date string
+  return formattedDate;
+};

@@ -22,8 +22,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
+    
     // Set color theme
-
     setColorScheme("light")
 
     // Check if 'walletKey' exists in localStorage when the component mounts
