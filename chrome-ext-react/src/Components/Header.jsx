@@ -77,6 +77,10 @@ export default function Header() {
         h={"76px"}
         style={{ boxShadow: "0px 6px 4px rgba(0, 0, 0, 0.1)" }}
         pt={"2px"}
+        pos={"sticky"}
+        top={0}
+        left={0}
+        zIndex={9990}
       >
         <Flex
           w={"65px"}

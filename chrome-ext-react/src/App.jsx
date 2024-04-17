@@ -14,15 +14,18 @@ import Transactions from "./pages/Transactions";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 function App() {
   useMantineColorScheme("light");
+  const { setColorScheme } = useMantineColorScheme();
 
   const [walletKey, setWalletKey] = useState("");
   const [apiKey, setApiKey] = useState("");
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const [test, setTest] = useState("none!");
-
   useEffect(() => {
+    // Set color theme
+
+    setColorScheme("light")
+
     // Check if 'walletKey' exists in localStorage when the component mounts
     const storedWalletKey = localStorage.getItem("walletKey");
     const storedApiKey = localStorage.getItem("apiKey");
