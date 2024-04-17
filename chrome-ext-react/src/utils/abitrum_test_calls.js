@@ -1,3 +1,5 @@
+const SEPOLIA_BLOCK_URL = "https://sepolia.etherscan.io/block/"
+
 export const get_balance = async (apiKey, address) => {
   const url = `https://api-sepolia.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${apiKey}`;
 
@@ -78,3 +80,7 @@ export const timestampToLocalTime = (timestamp) => {
   // Return the formatted date string
   return formattedDate;
 };
+
+export const get_block_url = (block) => {
+    return SEPOLIA_BLOCK_URL + block
+}

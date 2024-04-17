@@ -8,6 +8,7 @@ import {
   ScrollArea,
   Text,
   Popover,
+  Anchor,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 
@@ -18,6 +19,7 @@ import {
   async_get_txs,
   formatRelativeTime,
   timestampToLocalTime,
+  get_block_url
 } from "../utils/abitrum_test_calls";
 
 export default function HomePage() {
@@ -75,7 +77,7 @@ export default function HomePage() {
     };
 
     // TODO: uncomment this to actually get data
-    // fetchData();
+    //fetchData();
 
     // TODO: remove this testing numbers
     const wKey = localStorage.getItem("walletKey");
@@ -145,7 +147,7 @@ export default function HomePage() {
     <Box w={"400px"} h={"600px"} style={{ overflowY: "hidden" }}>
       <Header />
       <ScrollArea h={"100%"} scrollbars="y">
-        <Box w={"100%"} h={"520px"} px={"12px"}>
+        <Box w={"100%"} h={"520px"} px={"2px"}>
           {loading && (
             <Flex
               h={"100%"}
@@ -183,13 +185,21 @@ export default function HomePage() {
                   {transactions.map((item, index) => (
                     <Table.Tr key={item.timeStamp}>
                       <Table.Td>{shortenStr(item.hash)}</Table.Td>
-                      <Table.Td>{shortenStr(item.blockNumber)}</Table.Td>
+                      <Table.Td>
+                        <Anchor 
+                          href={get_block_url(item.blockNumber)}
+                          target="_blank"
+                          underline="hover"
+                        >
+                          {shortenStr(item.blockNumber)}
+                        </Anchor>
+                      </Table.Td>
                       <Table.Td>
                         <Popover position="bottom" withArrow shadow="md">
                           <Popover.Target>
-                            <Text style={{ cursor: "pointer" }}>
+                            <p style={{ cursor: "pointer" }}>
                               {formatRelativeTime(item.timeStamp)}
-                            </Text>
+                            </p>
                           </Popover.Target>
                           <Popover.Dropdown width={180} p={8}>
                             <Text size="sm">
