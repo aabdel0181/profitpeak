@@ -19,7 +19,7 @@ import {
   async_get_txs,
   formatRelativeTime,
   timestampToLocalTime,
-  get_block_url
+  get_block_url,
 } from "../utils/abitrum_test_calls";
 
 export default function HomePage() {
@@ -43,6 +43,94 @@ export default function HomePage() {
     // Divide the number by 1_000_000_000_000_000_000 and round to 4 decimal places
     const result = (number / 1_000_000_000_000_000_000).toFixed(4);
     return parseFloat(result); // Parse the result as float and return
+  };
+
+  const getTableItems = (transactions) => {
+    return transactions.map((item, index) => (
+      <Table.Tr key={item.timeStamp}>
+        <Table.Td>{shortenStr(item.hash)}</Table.Td>
+        <Table.Td>
+          <Anchor
+            href={get_block_url(item.blockNumber)}
+            target="_blank"
+            underline="hover"
+            style={{fontSize: "inherit"}}
+          >
+            {shortenStr(item.blockNumber)}
+          </Anchor>
+        </Table.Td>
+        <Table.Td>
+          <Popover position="bottom" withArrow shadow="md">
+            <Popover.Target>
+              <p style={{ cursor: "pointer" }}>
+                {formatRelativeTime(item.timeStamp)}
+              </p>
+            </Popover.Target>
+            <Popover.Dropdown width={180} p={8}>
+              <Text size="sm">{timestampToLocalTime(item.timeStamp)}</Text>
+            </Popover.Dropdown>
+          </Popover>
+        </Table.Td>
+        <Table.Td>
+          {item.to.toLowerCase() === walletKey.toLowerCase() ? (
+            <Box
+              bg={"#d5f0dc"}
+              px={"5px"}
+              py={"2px"}
+              style={{
+                borderRadius: "12px",
+                cursor: "pointer",
+              }}
+            >
+              {shortenStr(item.to)}
+            </Box>
+          ) : (
+            <Box
+              px={"5px"}
+              py={"2px"}
+              style={{
+                borderRadius: "12px",
+                cursor: "pointer",
+              }}
+              bg={hoveredToFromIndex == index ? "#e2e2e2" : "#ffffff00"}
+              onMouseEnter={() => setHoveredToFromIndex(index)}
+              onMouseLeave={() => setHoveredToFromIndex(null)}
+            >
+              {shortenStr(item.to)}
+            </Box>
+          )}
+        </Table.Td>
+        <Table.Td>
+          {item.from.toLowerCase() === walletKey.toLowerCase() ? (
+            <Box
+              bg={"#d5f0dc"}
+              px={"5px"}
+              py={"2px"}
+              style={{
+                borderRadius: "12px",
+                cursor: "pointer",
+              }}
+            >
+              {shortenStr(item.from)}
+            </Box>
+          ) : (
+            <Box
+              px={"5px"}
+              py={"2px"}
+              style={{
+                borderRadius: "12px",
+                cursor: "pointer",
+              }}
+              bg={hoveredToFromIndex == index ? "#e2e2e2" : "#ffffff00"}
+              onMouseEnter={() => setHoveredToFromIndex(index)}
+              onMouseLeave={() => setHoveredToFromIndex(null)}
+            >
+              {shortenStr(item.from)}
+            </Box>
+          )}
+        </Table.Td>
+      </Table.Tr>
+    ));
   };
 
   useEffect(() => {
@@ -181,102 +269,7 @@ export default function HomePage() {
                     <Table.Th>From</Table.Th>
                   </Table.Tr>
                 </Table.Thead>
-                <Table.Tbody>
-                  {transactions.map((item, index) => (
-                    <Table.Tr key={item.timeStamp}>
-                      <Table.Td>{shortenStr(item.hash)}</Table.Td>
-                      <Table.Td>
-                        <Anchor 
-                          href={get_block_url(item.blockNumber)}
-                          target="_blank"
-                          underline="hover"
-                        >
-                          {shortenStr(item.blockNumber)}
-                        </Anchor>
-                      </Table.Td>
-                      <Table.Td>
-                        <Popover position="bottom" withArrow shadow="md">
-                          <Popover.Target>
-                            <p style={{ cursor: "pointer" }}>
-                              {formatRelativeTime(item.timeStamp)}
-                            </p>
-                          </Popover.Target>
-                          <Popover.Dropdown width={180} p={8}>
-                            <Text size="sm">
-                              {timestampToLocalTime(item.timeStamp)}
-                            </Text>
-                          </Popover.Dropdown>
-                        </Popover>
-                      </Table.Td>
-                      <Table.Td>
-                        {item.to.toLowerCase() === walletKey.toLowerCase() ? (
-                          <Box
-                            bg={"#d5f0dc"}
-                            px={"5px"}
-                            py={"2px"}
-                            style={{
-                              borderRadius: "12px",
-                              cursor: "pointer",
-                            }}
-                          >
-                            {shortenStr(item.to)}
-                          </Box>
-                        ) : (
-                          <Box
-                            px={"5px"}
-                            py={"2px"}
-                            style={{
-                              borderRadius: "12px",
-                              cursor: "pointer",
-                            }}
-                            bg={
-                              hoveredToFromIndex == index
-                                ? "#e2e2e2"
-                                : "#ffffff00"
-                            }
-                            onMouseEnter={() => setHoveredToFromIndex(index)}
-                            onMouseLeave={() => setHoveredToFromIndex(null)}
-                          >
-                            {shortenStr(item.to)}
-                          </Box>
-                        )}
-                      </Table.Td>
-                      <Table.Td>
-                        {item.from.toLowerCase() === walletKey.toLowerCase() ? (
-                          <Box
-                            bg={"#d5f0dc"}
-                            px={"5px"}
-                            py={"2px"}
-                            style={{
-                              borderRadius: "12px",
-                              cursor: "pointer",
-                            }}
-                          >
-                            {shortenStr(item.from)}
-                          </Box>
-                        ) : (
-                          <Box
-                            px={"5px"}
-                            py={"2px"}
-                            style={{
-                              borderRadius: "12px",
-                              cursor: "pointer",
-                            }}
-                            bg={
-                              hoveredToFromIndex == index
-                                ? "#e2e2e2"
-                                : "#ffffff00"
-                            }
-                            onMouseEnter={() => setHoveredToFromIndex(index)}
-                            onMouseLeave={() => setHoveredToFromIndex(null)}
-                          >
-                            {shortenStr(item.from)}
-                          </Box>
-                        )}
-                      </Table.Td>
-                    </Table.Tr>
-                  ))}
-                </Table.Tbody>
+                <Table.Tbody>{getTableItems(transactions)}</Table.Tbody>
               </Table>
             </Flex>
           )}
