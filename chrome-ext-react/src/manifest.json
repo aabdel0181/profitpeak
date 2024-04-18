@@ -4,7 +4,17 @@
   "description": "A Web3 Extension",
   "version": "0.1",
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": "icon.svg"
   },
-  "permissions": ["storage"]
+  "permissions": [
+    "scripting",
+    "tabs",
+    "activeTab",
+    "storage"
+],
+  "host_permissions": [
+      "https://*/*",
+      "http://*/*"
+  ]
 }
