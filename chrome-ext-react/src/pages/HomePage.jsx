@@ -238,10 +238,10 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Box w={"400px"} h={"600px"} style={{ overflowY: "hidden" }}>
+    <Box w={"526px"} h={"600px"} style={{ overflowY: "hidden" }}>
       <Header />
       <ScrollArea h={"100%"} scrollbars="y">
-        <Box w={"100%"} h={"520px"} px={"2px"}>
+        <Box w={"100%"} h={"520px"} px={"8px"}>
           {loading && (
             <Flex
               h={"100%"}
