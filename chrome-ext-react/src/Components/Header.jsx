@@ -95,6 +95,7 @@ export default function Header() {
             top={"0px"}
             right={"0px"}
             onClick={onClickHome}
+            size={"lg"}
           >
             <IconHome style={{ width: "70%", height: "70%" }} stroke={1.5} />
           </ActionIcon>
@@ -111,7 +112,7 @@ export default function Header() {
               <Flex
                 ref={ref}
                 bg={hovered ? "#f8f8f8" : "white"}
-                h={"32px"}
+                h={"40px"}
                 px={"8px"}
                 gap={"6px"}
                 align={"center"}
@@ -122,10 +123,10 @@ export default function Header() {
                 }}
                 onClick={copyWalletKey}
               >
-                <Text size="sm" style={{ userSelect: "none" }}>
+                <Text size="md" style={{ userSelect: "none" }}>
                   {parseWalletKey(walletKey)}
                 </Text>
-                <ThemeIcon variant="white" aria-label="Copy" bg={"transparent"}>
+                <ThemeIcon variant="white" aria-label="Copy" bg={"transparent"} size={"lg"}>
                   <IconCopy
                     style={{ width: "70%", height: "70%" }}
                     stroke={1.5}
@@ -170,6 +171,7 @@ export default function Header() {
             top={"0px"}
             right={"0px"}
             onClick={onClickLogout}
+            size={"lg"}
           >
             <IconLogout style={{ width: "70%", height: "70%" }} stroke={1.5} />
           </ActionIcon>

@@ -13,6 +13,7 @@ import {
 import { useState, useEffect } from "react";
 
 import Header from "../Components/Header";
+import BalanceHeader from "../Components/BalanceHeader";
 
 import {
   get_balance,
@@ -147,15 +148,6 @@ export default function HomePage() {
       setWalletKey(wKey);
       setApiKey(aKey);
 
-      // Get balance
-      const balanceResults = await get_balance(aKey, wKey);
-
-      if (balanceResults.status == "1") {
-        setWalletBalance(divideAndRound(parseInt(balanceResults.result)));
-      } else {
-        setWalletBalance(0);
-      }
-
       // Get transcations
       const transactionsResults = await async_get_txs(aKey, wKey, 0);
 
@@ -255,9 +247,7 @@ export default function HomePage() {
 
           {!loading && (
             <Flex h={"100%"} direction={"column"} align={"center"}>
-              <Title size={"h1"} style={{ fontWeight: 500 }} py={"24px"}>
-                {`${walletBalance} ETH`}
-              </Title>
+              <BalanceHeader />
 
               <Divider w={"80%"} mb={"24px"} />
 
