@@ -1,13 +1,20 @@
-import { Box, Button, Flex, useMantineColorScheme, Title, Input, Divider} from '@mantine/core'
-import { useState, useEffect } from 'react'
-
-import ConnectPage from './pages/ConnectPage';
-import HomePage from './pages/HomePage';
-
-// Contains the the extension and its sizing
+import {
+  Box,
+  Button,
+  Flex,
+  useMantineColorScheme,
+  Title,
+  Input,
+  Divider,
+} from "@mantine/core";
+import { useState, useEffect } from "react";
+import ConnectPage from "./pages/ConnectPage";
+import HomePage from "./pages/HomePage";
+import Transactions from "./pages/Transactions";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 function App() {
-
-  useMantineColorScheme("light")
+  useMantineColorScheme("light");
+  const { setColorScheme } = useMantineColorScheme();
 
   const [walletKey, setWalletKey] = useState("");
   const [apiKey, setApiKey] = useState("");
@@ -15,54 +22,67 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Open (or create) the database
-    const request = window.indexedDB.open('myDatabase', 1);
+    
+    // Set color theme
+    setColorScheme("light")
 
-    request.onerror = function(event) {
-      console.log('Database error: ' + event.target.errorCode);
-    };
-
-    request.onupgradeneeded = function(event) {
-      const db = event.target.result;
-      
-      // Create an object store named "data"
-      const objectStore = db.createObjectStore('data', { keyPath: 'id' });
-
-      // Create an index to search values by id
-      objectStore.createIndex('id', 'id', { unique: true });
-    };
-
-    request.onsuccess = function(event) {
-      const db = event.target.result;
-
-      // Start a new transaction
-      const transaction = db.transaction(['data'], 'readwrite');
-
-      // Get the object store
-      const objectStore = transaction.objectStore('data');
-
-      // Add data to the object store
-      const data = { id: 1, value: '123' };
-      objectStore.add(data);
-    };
-  }, []);
-  
-  if (!loggedIn) {
-      return (
-        <ConnectPage 
-          walletKey={walletKey}
-          setWalletKey={setWalletKey} 
-          apiKey={apiKey} 
-          setApiKey={setApiKey} 
-          setLoggedIn={setLoggedIn} 
-        />
-      )
-    } else {
-      return (
-        <HomePage />
-      )
+    // Check if 'walletKey' exists in localStorage when the component mounts
+    const storedWalletKey = localStorage.getItem("walletKey");
+    const storedApiKey = localStorage.getItem("apiKey");
+    if (storedWalletKey) {
+      setWalletKey(storedWalletKey);
     }
-  
+    if (storedApiKey) {
+      setApiKey(storedApiKey);
+    }
+
+    if (storedWalletKey && storedApiKey) {
+      setLoggedIn(true);
+    }
+  }, []);
+
+  return (
+    <div>
+      <MemoryRouter >
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <ConnectPage
+                walletKey={walletKey}
+                setWalletKey={setWalletKey}
+                apiKey={apiKey}
+                setApiKey={setApiKey}
+                setLoggedIn={setLoggedIn}
+              />
+            }
+          />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/home" element={<HomePage />} />
+        </Routes>
+      </MemoryRouter >
+    </div>
+  );
+
+  // if (!loggedIn) {
+  //     return (
+  //       <ConnectPage
+  //         walletKey={walletKey}
+  //         setWalletKey={setWalletKey}
+  //         apiKey={apiKey}
+  //         setApiKey={setApiKey}
+  //         setLoggedIn={setLoggedIn}
+  //       />
+  //     )
+  //   } else {
+  //     return (
+  //       <>
+  //         <HomePage />
+  //       <div>{test}</div>
+  //       </>
+  //     )
+  //   }
 }
 
-export default App
+export default App;

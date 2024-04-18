@@ -1,9 +1,10 @@
 {
-    "manifest_version": 3,
-    "name": "Profit Peak",
-    "description": "A Web3 Extension",
-    "version": "0.1",
-    "action": {
-      "default_popup": "index.html"
-    }
-  }
+  "manifest_version": 3,
+  "name": "Profit Peak",
+  "description": "A Web3 Extension",
+  "version": "0.1",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["storage"]
+}
