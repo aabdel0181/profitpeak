@@ -50,6 +50,10 @@ export default function HomePage() {
       <Table.Tr key={item.timeStamp}>
         <Table.Td>{shortenStr(item.hash)}</Table.Td>
         <Table.Td>
+        <div>{item.value}</div>
+        <div>${item.valueUSD}</div>
+      </Table.Td>
+        {/* <Table.Td>
           <Anchor
             href={get_block_url(item.blockNumber)}
             target="_blank"
@@ -58,7 +62,7 @@ export default function HomePage() {
           >
             {shortenStr(item.blockNumber)}
           </Anchor>
-        </Table.Td>
+        </Table.Td> */}
         <Table.Td>
           <Popover position="bottom" withArrow shadow="md">
             <Popover.Target>
@@ -265,7 +269,7 @@ export default function HomePage() {
                 <Table.Thead>
                   <Table.Tr>
                     <Table.Th>Txn</Table.Th>
-                    <Table.Th>Block #</Table.Th>
+                    <Table.Th>Value: ETH, USD</Table.Th>
                     <Table.Th pr={"32px"}>Time</Table.Th>
                     <Table.Th>To</Table.Th>
                     <Table.Th>From</Table.Th>
