@@ -1,3 +1,37 @@
+import Web3 from "web3";
+import fs from "fs";
+
+const web3 = new Web3(
+  new Web3.providers.HttpProvider(
+    "https://mainnet.infura.io/v3/f501be219210471882183e36c2e042db"
+  )
+);
+
+// Function to decode transaction input
+async function decodeTransactionInput(contractAddress, inputData) {
+  // Load the ABI from a JSON file
+  const abi = JSON.parse(fs.readFileSync("../abi/uni_sep.json", "utf-8"));
+
+  // Create a contract instance
+  const contract = new web3.eth.Contract(abi, contractAddress);
+
+  // Assuming we know the method ID, let's extract it to find the corresponding ABI item
+  const methodId = inputData.slice(0, 10); // First 10 characters represent the method ID
+  const functionABI = abi.find(
+    (item) => web3.eth.abi.encodeFunctionSignature(item) === methodId
+  );
+
+  if (!functionABI) {
+    throw new Error("Function ABI not found for the method ID provided.");
+  }
+
+  // Decode the input data
+  const decodedInput = web3.eth.abi.decodeParameters(
+    functionABI.inputs,
+    inputData.slice(10)
+  ); // Slice off the method ID before decoding
+  return decodedInput;
+}
 // Define the API URL and function to fetch transaction data
 async function async_get_txs(api_key, address, start_date) {
   const norm_txs = `https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${start_date}&endblock=99999999&page=1&offset=10&sort=asc&apikey=${api_key}`;
@@ -77,5 +111,14 @@ async function getInternalTransactions(api_key, txHash, address) {
         ); // Fetch and output internal transactions
       }
     }
+  }
+  for (const tx of tx_response.result) {
+    decodeTransactionInput(uniswapAddress, tx.input)
+      .then((decoded) => {
+        console.log("Decoded Input Data:", decoded);
+      })
+      .catch((error) => {
+        console.error("Error decoding input:", error);
+      });
   }
 })();
