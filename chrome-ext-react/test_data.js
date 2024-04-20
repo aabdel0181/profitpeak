@@ -58,10 +58,10 @@ const main = async () => {
   const apiKey = "ZSPYYMRN3UBZTQ1KF3VMHY19JUKNRYWTF5";
   const address = "0xbE197f43EC7b1B0f50BACF77c12C262C435EeD4D";
 
-  //const res = await get_balance(apiKey, address);
-  //console.log(res);
+  const res = await get_balance(apiKey, address);
+  console.log(res);
 
-  const res2 = await async_get_txs(apiKey, address, 0);
+  //const res2 = await async_get_txs(apiKey, address, 0);
 
 };
 
