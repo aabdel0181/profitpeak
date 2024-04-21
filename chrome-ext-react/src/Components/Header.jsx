@@ -13,6 +13,8 @@ import { IconLogout, IconCopy, IconHome } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useHover } from "@mantine/hooks";
 
+import MenuButton from "./MenuButton";
+
 export default function Header() {
   const navigate = useNavigate();
   const { hovered, ref } = useHover();
@@ -88,7 +90,7 @@ export default function Header() {
           align={"center"}
           justify={"center"}
         >
-          <ActionIcon
+          {/* <ActionIcon
             variant="light"
             aria-label="Logout"
             pos={"relative"}
@@ -98,7 +100,8 @@ export default function Header() {
             size={"lg"}
           >
             <IconHome style={{ width: "70%", height: "70%" }} stroke={1.5} />
-          </ActionIcon>
+          </ActionIcon> */}
+          <MenuButton />
         </Flex>
         <Flex align={"center"} justify={"center"} style={{ flexGrow: "2" }}>
           <Popover

@@ -39,7 +39,7 @@ export default function ConnectPage() {
 
       if (data.status == "1") {
         return true;
-      } else if (data.result.includes == "API Key") {
+      } else if (data.result.includes("API Key")) {
         setApiKeyError("Invalid Api key!");
       } else {
         setWalletKeyError("Invalid wallet address!");
