@@ -12,6 +12,9 @@ import ConnectPage from "./pages/ConnectPage";
 import HomePage from "./pages/HomePage";
 import Transactions from "./pages/Transactions";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
+
+import "./index.css"
+
 function App() {
   useMantineColorScheme("light");
   const { setColorScheme } = useMantineColorScheme();

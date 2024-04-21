@@ -230,7 +230,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <Box w={"526px"} h={"600px"} style={{ overflowY: "hidden" }}>
+    <Box w={"526px"} h={"600px"} style={{ overflowY: "hidden", border: "1px solid black"}}>
       <Header />
       <ScrollArea h={"100%"} scrollbars="y">
         <Box w={"100%"} h={"520px"} px={"8px"}>
