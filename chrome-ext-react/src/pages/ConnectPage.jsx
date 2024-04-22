@@ -25,16 +25,16 @@ export default function ConnectPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const validateKeyAddress = async (walletKey, apiKey) => {
+  async function validateKeyAddress(walletKey, apiKey) {
 
     const url = `https://api-sepolia.etherscan.io/api?module=account&action=balance&address=${walletKey}&tag=latest&apikey=${apiKey}`;
     try {
       const response = await fetch(url);
-  
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-  
+
       const data = await response.json();
 
       if (data.status == "1") {
@@ -52,27 +52,29 @@ export default function ConnectPage() {
       setApiKeyError("Invalid Api key!");
       return false;
     }
-  };
+  }
 
-  const onConnectClick = async () => {
+  async function onConnectClick() {
     setLoading(true);
 
     if (await validateKeyAddress(walletKey, apiKey) == true) {
-      console.log("reached!")
-      await localStorage.setItem("walletKey", walletKey);
-      await localStorage.setItem("apiKey", apiKey);
+      console.log("reached!");
+      localStorage.setItem("walletKey", walletKey);
+      localStorage.setItem("apiKey", apiKey);
       navigate("/home");
     }
 
     setLoading(false);
-  };
+  }
 
   // Auto login/connect if api and walletkey are present
   useEffect(() => {
     const wKey = localStorage.getItem("walletKey");
     const aKey = localStorage.getItem("apiKey");
-
+    
     if (wKey && aKey) {
+      setWalletKey(wKey);
+      setApiKey(aKey);
       navigate("/home");
     }
 
