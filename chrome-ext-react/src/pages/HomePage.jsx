@@ -31,6 +31,7 @@ export default function HomePage() {
   const [walletBalance, setWalletBalance] = useState("");
   const [transactions, setTransactions] = useState([]);
   const [hoveredToFromIndex, setHoveredToFromIndex] = useState(null);
+  const [hoveredToFromIndex1, setHoveredToFromIndex1] = useState(null);
 
   const shortenStr = (str) => {
     if (str.length > 8) {
@@ -79,7 +80,9 @@ export default function HomePage() {
         <Table.Td>
           {item.to.toLowerCase() === walletKey.toLowerCase() ? (
             <Box
-              bg={"#d5f0dc"}
+              bg={hoveredToFromIndex1 == index ? "#a2b4a6" : "#d5f0dc"}
+              onMouseEnter={() => setHoveredToFromIndex1(index)}
+              onMouseLeave={() => setHoveredToFromIndex1(null)}
               px={"5px"}
               py={"2px"}
               style={{
@@ -108,7 +111,9 @@ export default function HomePage() {
         <Table.Td>
           {item.from.toLowerCase() === walletKey.toLowerCase() ? (
             <Box
-              bg={"#d5f0dc"}
+              bg={hoveredToFromIndex1 == index ? "#a2b4a6" : "#d5f0dc"}
+              onMouseEnter={() => setHoveredToFromIndex1(index)}
+              onMouseLeave={() => setHoveredToFromIndex1(null)}
               px={"5px"}
               py={"2px"}
               style={{
@@ -259,7 +264,7 @@ export default function HomePage() {
                 <Table.Thead>
                   <Table.Tr>
                     <Table.Th>Txn</Table.Th>
-                    <Table.Th>Value: ETH, USD</Table.Th>
+                    <Table.Th>Value: CC, USD</Table.Th>
                     <Table.Th pr={"32px"}>Time</Table.Th>
                     <Table.Th>To</Table.Th>
                     <Table.Th>From</Table.Th>
