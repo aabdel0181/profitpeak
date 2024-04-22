@@ -95,7 +95,7 @@ export default function ConnectPage() {
             Profit Peak
           </Title>
           <Text c="dimmed" mb={"64px"} size="sm" ta="center" mt={5}>
-            Smart crypto analytics (some description)
+          Cryptocurrency transaction analytics: gain insights into trade history, profit/loss calculations, and trends analysis
           </Text>
 
           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
