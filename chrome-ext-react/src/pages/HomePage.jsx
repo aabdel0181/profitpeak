@@ -43,15 +43,15 @@ export default function HomePage() {
       <Table.Tr key={item.timeStamp}>
         <Table.Td>{shortenStr(item.hash)}</Table.Td>
         <Table.Td>
-        <div>{item.value}</div>
-        <div>${item.valueUSD}</div>
-      </Table.Td>
+          <div>{item.value}</div>
+          <div>${item.valueUSD}</div>
+        </Table.Td>
         {/* <Table.Td>
           <Anchor
             href={get_block_url(item.blockNumber)}
             target="_blank"
             underline="hover"
-            style={{fontSize: "inherit"}}
+            style={{ fontSize: "inherit" }}
           >
             {shortenStr(item.blockNumber)}
           </Anchor>
@@ -70,37 +70,53 @@ export default function HomePage() {
         </Table.Td>
         <Table.Td>
           {item.to.toLowerCase() === walletKey.toLowerCase() ? (
-            <Box
-              bg={hoveredToFromIndex1 == index ? "#a2b4a6" : "#d5f0dc"}
-              onMouseEnter={() => setHoveredToFromIndex1(index)}
-              onMouseLeave={() => setHoveredToFromIndex1(null)}
-              px={"5px"}
-              py={"2px"}
-              style={{
-                borderRadius: "12px",
-                cursor: "pointer",
-              }}
-            >
-              {shortenStr(item.to)}
-            </Box>
+            <Popover position="bottom" withArrow shadow="md">
+              <Popover.Target>
+                <Box
+                  bg={hoveredToFromIndex == index ? "#a2b4a6" : "#d5f0dc"}
+                  onMouseEnter={() => setHoveredToFromIndex(index)}
+                  onMouseLeave={() => setHoveredToFromIndex(null)}
+                  px={"5px"}
+                  py={"2px"}
+                  style={{
+                    borderRadius: "12px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {shortenStr(item.to)}
+                </Box>
+              </Popover.Target>
+              <Popover.Dropdown width={180} p={8}>
+                <Text size="sm">{item.to}</Text>
+              </Popover.Dropdown>
+            </Popover>
           ) : (
-            <Box
-              px={"5px"}
-              py={"2px"}
-              style={{
-                borderRadius: "12px",
-                cursor: "pointer",
-              }}
-              bg={hoveredToFromIndex == index ? "#e2e2e2" : "#ffffff00"}
-              onMouseEnter={() => setHoveredToFromIndex(index)}
-              onMouseLeave={() => setHoveredToFromIndex(null)}
-            >
-              {shortenStr(item.to)}
-            </Box>
+            <Popover position="bottom" withArrow shadow="md">
+              <Popover.Target>
+                <Box
+                  px={"5px"}
+                  py={"2px"}
+                  style={{
+                    borderRadius: "12px",
+                    cursor: "pointer",
+                  }}
+                  bg={hoveredToFromIndex == index ? "#e2e2e2" : "#ffffff00"}
+                  onMouseEnter={() => setHoveredToFromIndex(index)}
+                  onMouseLeave={() => setHoveredToFromIndex(null)}
+                >
+                  {shortenStr(item.to)}
+                </Box>
+              </Popover.Target>
+              <Popover.Dropdown width={180} p={8}>
+                <Text size="sm">{item.to}</Text>
+              </Popover.Dropdown>
+            </Popover>
           )}
         </Table.Td>
         <Table.Td>
           {item.from.toLowerCase() === walletKey.toLowerCase() ? (
+            <Popover position="bottom" withArrow shadow="md">
+            <Popover.Target>
             <Box
               bg={hoveredToFromIndex1 == index ? "#a2b4a6" : "#d5f0dc"}
               onMouseEnter={() => setHoveredToFromIndex1(index)}
@@ -111,10 +127,18 @@ export default function HomePage() {
                 borderRadius: "12px",
                 cursor: "pointer",
               }}
+              onClick={() => alert(item.from)}
             >
               {shortenStr(item.from)}
             </Box>
+            </Popover.Target>
+              <Popover.Dropdown width={180} p={8}>
+                <Text size="sm">{item.from}</Text>
+              </Popover.Dropdown>
+            </Popover>
           ) : (
+            <Popover position="bottom" withArrow shadow="md">
+            <Popover.Target>
             <Box
               px={"5px"}
               py={"2px"}
@@ -122,12 +146,18 @@ export default function HomePage() {
                 borderRadius: "12px",
                 cursor: "pointer",
               }}
-              bg={hoveredToFromIndex == index ? "#e2e2e2" : "#ffffff00"}
-              onMouseEnter={() => setHoveredToFromIndex(index)}
-              onMouseLeave={() => setHoveredToFromIndex(null)}
+              bg={hoveredToFromIndex1 == index ? "#e2e2e2" : "#ffffff00"}
+              onMouseEnter={() => setHoveredToFromIndex1(index)}
+              onMouseLeave={() => setHoveredToFromIndex1(null)}
+              onClick={() => alert(item.from)}
             >
               {shortenStr(item.from)}
             </Box>
+            </Popover.Target>
+            <Popover.Dropdown width={180} p={8}>
+              <Text size="sm">{item.from}</Text>
+            </Popover.Dropdown>
+          </Popover>
           )}
         </Table.Td>
       </Table.Tr>
