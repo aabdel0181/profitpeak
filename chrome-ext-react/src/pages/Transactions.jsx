@@ -10,13 +10,10 @@ import {
   ScrollArea,
   Flex,
   Table,
-  Collapse,
   Popover,
   Text,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 
-import { AreaChart, Card, Title as TremorTitle } from "@tremor/react";
 
 import Header from "../Components/Header";
 
@@ -24,7 +21,6 @@ const Transactions = () => {
   const [walletKey, setWalletKey] = useState("");
   const [apiKey, setApiKey] = useState("");
 
-  const [opened, { toggle }] = useDisclosure(false);
 
   useEffect(() => {
     const fetchData = async () => {

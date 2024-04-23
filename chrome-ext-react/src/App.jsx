@@ -1,19 +1,11 @@
-import {
-  Box,
-  Button,
-  Flex,
-  useMantineColorScheme,
-  Title,
-  Input,
-  Divider,
-} from "@mantine/core";
-import { useState, useEffect } from "react";
+import { useMantineColorScheme } from "@mantine/core";
+import { useEffect } from "react";
 import ConnectPage from "./pages/ConnectPage";
 import HomePage from "./pages/HomePage";
 import Transactions from "./pages/Transactions";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 
-import "./index.css"
+import "./index.css";
 
 function App() {
   useMantineColorScheme("light");

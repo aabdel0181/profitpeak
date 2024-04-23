@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Flex,
@@ -9,7 +9,7 @@ import {
   Transition,
 } from "@mantine/core";
 
-import { IconLogout, IconCopy, IconHome } from "@tabler/icons-react";
+import { IconLogout, IconCopy } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useHover } from "@mantine/hooks";
 
@@ -37,9 +37,6 @@ export default function Header() {
     navigate("/");
   };
 
-  const onClickHome = () => {
-    navigate("/home");
-  };
 
   const copyWalletKey = () => {
     navigator.clipboard.writeText(walletKey);

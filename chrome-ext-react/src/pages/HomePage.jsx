@@ -8,7 +8,6 @@ import {
   ScrollArea,
   Text,
   Popover,
-  Anchor,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 
@@ -16,11 +15,9 @@ import Header from "../Components/Header";
 import BalanceHeader from "../Components/BalanceHeader";
 
 import {
-  get_balance,
   async_get_txs,
   formatRelativeTime,
   timestampToLocalTime,
-  get_block_url,
 } from "../utils/abitrum_test_calls";
 
 export default function HomePage() {
@@ -38,12 +35,6 @@ export default function HomePage() {
     } else {
       return str;
     }
-  };
-
-  const divideAndRound = (number) => {
-    // Divide the number by 1_000_000_000_000_000_000 and round to 4 decimal places
-    const result = (number / 1_000_000_000_000_000_000).toFixed(4);
-    return parseFloat(result); // Parse the result as float and return
   };
 
   const getTableItems = (transactions) => {
