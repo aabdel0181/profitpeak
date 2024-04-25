@@ -20,6 +20,8 @@ import {
   timestampToLocalTime,
 } from "../utils/abitrum_test_calls";
 
+
+
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
@@ -29,6 +31,11 @@ export default function HomePage() {
   const [transactions, setTransactions] = useState([]);
   const [hoveredToFromIndex, setHoveredToFromIndex] = useState(null);
   const [hoveredToFromIndex1, setHoveredToFromIndex1] = useState(null);
+
+  const divideAndRound = (number) => {
+    const result = (number / 1_000_000_000_000_000_000).toFixed(4);
+    return parseFloat(result);
+  };
 
   const shortenStr = (str) => {
     if (str.length > 8) {
@@ -43,7 +50,7 @@ export default function HomePage() {
       <Table.Tr key={item.timeStamp}>
         <Table.Td>{shortenStr(item.hash)}</Table.Td>
         <Table.Td>
-          <div>{item.value}</div>
+          <div>{divideAndRound(parseInt(item.value))}</div>
           <div>${item.valueUSD}</div>
         </Table.Td>
         {/* <Table.Td>
@@ -187,67 +194,67 @@ export default function HomePage() {
     };
 
     // TODO: uncomment this to actually get data
-    //fetchData();
+    fetchData();
 
     // TODO: remove this testing numbers
-    const wKey = localStorage.getItem("walletKey");
-    const aKey = localStorage.getItem("apiKey");
+    // const wKey = localStorage.getItem("walletKey");
+    // const aKey = localStorage.getItem("apiKey");
 
-    setWalletKey(wKey);
-    setApiKey(aKey);
-    setWalletBalance(0.9997);
-    setTransactions([
-      {
-        blockNumber: "5663389",
-        timeStamp: "1712693688",
-        hash: "0x8465f44d5d8ef3a321a38ba1f8c4f4f7a1e95a414b3ffa78c7e776811ecee31d",
-        nonce: "5",
-        blockHash:
-          "0xb8c7741e0464c4f8536d4c274cbb0f6863dbeb7208d3da8fddcf19966400a611",
-        transactionIndex: "22",
-        from: "0xd262677a79fb6962084a546d63a162f2336de298",
-        to: "0xbe197f43ec7b1b0f50bacf77c12c262c435eed4d",
-        value: "0.0001",
-        valueUSD: "0.306779",
-        gas: "21000",
-        gasPrice: "1500447326",
-        isError: "0",
-        txreceipt_status: "1",
-        input: "0x",
-        contractAddress: "",
-        cumulativeGasUsed: "3921215",
-        gasUsed: "21000",
-        confirmations: "50662",
-        methodId: "0x",
-        functionName: "",
-      },
-      {
-        blockNumber: "5663402",
-        timeStamp: "1712693844",
-        hash: "0x8c1eb61bf94e4b78fbcd82231cca156c921ea6b6c059f8a5a310fca5e9f772b2",
-        nonce: "0",
-        blockHash:
-          "0x5aeada4a55e5c9e5f9b4de3cd5d8f8ab9ecbbefadb174b3099273acb2ee151a8",
-        transactionIndex: "17",
-        from: "0xbe197f43ec7b1b0f50bacf77c12c262c435eed4d",
-        to: "0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad",
-        value: "0.0001",
-        valueUSD: "0.306779",
-        gas: "185125",
-        gasPrice: "1500418510",
-        isError: "0",
-        txreceipt_status: "1",
-        input:
-          "0x3593564c000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000006615a48800000000000000000000000000000000000000000000000000000000000000020b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000005af3107a40000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000005af3107a40000000000000000000000000000000000000000000000000000000168c3bfaa04e00000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002bfff9976782d46cc05630d1f6ebab18b2324d6b14000bb81f9840a85d5af5bf1d1762f925bdaddc4201f984000000000000000000000000000000000000000000",
-        contractAddress: "",
-        cumulativeGasUsed: "3365368",
-        gasUsed: "128549",
-        confirmations: "50649",
-        methodId: "0x3593564c",
-        functionName: "execute(bytes commands,bytes[] inputs,uint256 deadline)",
-      },
-    ]);
-    setLoading(false);
+    // setWalletKey(wKey);
+    // setApiKey(aKey);
+    // setWalletBalance(0.9997);
+    // setTransactions([
+    //   {
+    //     blockNumber: "5663389",
+    //     timeStamp: "1712693688",
+    //     hash: "0x8465f44d5d8ef3a321a38ba1f8c4f4f7a1e95a414b3ffa78c7e776811ecee31d",
+    //     nonce: "5",
+    //     blockHash:
+    //       "0xb8c7741e0464c4f8536d4c274cbb0f6863dbeb7208d3da8fddcf19966400a611",
+    //     transactionIndex: "22",
+    //     from: "0xd262677a79fb6962084a546d63a162f2336de298",
+    //     to: "0xbe197f43ec7b1b0f50bacf77c12c262c435eed4d",
+    //     value: "0.0001",
+    //     valueUSD: "0.306779",
+    //     gas: "21000",
+    //     gasPrice: "1500447326",
+    //     isError: "0",
+    //     txreceipt_status: "1",
+    //     input: "0x",
+    //     contractAddress: "",
+    //     cumulativeGasUsed: "3921215",
+    //     gasUsed: "21000",
+    //     confirmations: "50662",
+    //     methodId: "0x",
+    //     functionName: "",
+    //   },
+    //   {
+    //     blockNumber: "5663402",
+    //     timeStamp: "1712693844",
+    //     hash: "0x8c1eb61bf94e4b78fbcd82231cca156c921ea6b6c059f8a5a310fca5e9f772b2",
+    //     nonce: "0",
+    //     blockHash:
+    //       "0x5aeada4a55e5c9e5f9b4de3cd5d8f8ab9ecbbefadb174b3099273acb2ee151a8",
+    //     transactionIndex: "17",
+    //     from: "0xbe197f43ec7b1b0f50bacf77c12c262c435eed4d",
+    //     to: "0x3fc91a3afd70395cd496c647d5a6cc9d4b2b7fad",
+    //     value: "0.0001",
+    //     valueUSD: "0.306779",
+    //     gas: "185125",
+    //     gasPrice: "1500418510",
+    //     isError: "0",
+    //     txreceipt_status: "1",
+    //     input:
+    //       "0x3593564c000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000006615a48800000000000000000000000000000000000000000000000000000000000000020b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000005af3107a40000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000005af3107a40000000000000000000000000000000000000000000000000000000168c3bfaa04e00000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002bfff9976782d46cc05630d1f6ebab18b2324d6b14000bb81f9840a85d5af5bf1d1762f925bdaddc4201f984000000000000000000000000000000000000000000",
+    //     contractAddress: "",
+    //     cumulativeGasUsed: "3365368",
+    //     gasUsed: "128549",
+    //     confirmations: "50649",
+    //     methodId: "0x3593564c",
+    //     functionName: "execute(bytes commands,bytes[] inputs,uint256 deadline)",
+    //   },
+    // ]);
+    // setLoading(false);
 
     // what do we care about:
     // blockNumber, timeStamp, from, to, value, hash, methodID
