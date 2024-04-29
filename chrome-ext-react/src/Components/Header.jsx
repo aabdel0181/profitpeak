@@ -37,7 +37,6 @@ export default function Header() {
     navigate("/");
   };
 
-
   const copyWalletKey = () => {
     navigator.clipboard.writeText(walletKey);
     setWalletKeyCopied(true);
@@ -68,6 +67,16 @@ export default function Header() {
     return () => {
       // Cleanup function
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(chrome);
+      const out = await chrome.storage.local.get(["key"]);
+      console.log("result: ", out);
+      console.log("value: ", out.key);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -126,7 +135,12 @@ export default function Header() {
                 <Text size="md" style={{ userSelect: "none" }}>
                   {parseWalletKey(walletKey)}
                 </Text>
-                <ThemeIcon variant="white" aria-label="Copy" bg={"transparent"} size={"lg"}>
+                <ThemeIcon
+                  variant="white"
+                  aria-label="Copy"
+                  bg={"transparent"}
+                  size={"lg"}
+                >
                   <IconCopy
                     style={{ width: "70%", height: "70%" }}
                     stroke={1.5}
