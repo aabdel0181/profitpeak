@@ -1,4 +1,9 @@
 // Define the API URL and function to fetch transaction data
+// const apiKey = process.env.REACT_APP_GECKO_API_KEY;
+// console.log(apiKey);
+// console.log(import.meta.env.REACT_APP_GECKO_API_KEY)
+
+// console.log(`${process.env.REACT_APP_FIREBASE_API_KEY}`);
 async function async_get_txs(api_key, address, start_date) {
   const norm_txs = `https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${start_date}&endblock=99999999&page=1&offset=10&sort=asc&apikey=${api_key}`;
   const ethToUsdUrl =
@@ -20,17 +25,17 @@ async function async_get_txs(api_key, address, start_date) {
     // data.result = data.result.filter(transaction => {
     //   return transaction.from === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD' || transaction.to === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD';
     // });
-    data.result.forEach((transaction) => {
-      transaction.value = parseFloat(transaction.value) / Math.pow(10, 18);
-    });
+    // data.result.forEach((transaction) => {
+    //   transaction.value = parseFloat(transaction.value) / Math.pow(10, 18);
+    // });
     data.result.forEach((transaction) => {
       transaction.timeStamp = new Date(
         parseInt(transaction.timeStamp, 10) * 1000
       );
     });
-    data.result.forEach((transaction) => {
-      transaction.valueUsd = transaction.value * ethUsdRate;
-    });
+    // data.result.forEach((transaction) => {
+    //   transaction.valueUsd = transaction.value * ethUsdRate;
+    // });
     console.log(data);
     return data; // Return the parsed JSON data
   } catch (error) {
