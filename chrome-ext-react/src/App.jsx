@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage";
 import Transactions from "./pages/Transactions";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 
-console.log(process.env.REACT_APP_GECKO_API_KEY);
+// console.log(process.env.REACT_APP_GECKO_API_KEY);
 
 import "./index.css";
 
