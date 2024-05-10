@@ -73,14 +73,14 @@ const Transactions = () => {
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
+      const { tokenInType, tokenInAmount, tokenOutType, tokenOutAmount } = payload[0].payload;
+
       return (
         <div className="custom-tooltip">
-          <p className="label">{`Date : ${label}`}</p>
-          <p className="intro">{`Price : ${payload[0].value}`}</p>
-          <p className="desc">{`Token In Type : ${payload[0].payload.tokenInType}`}</p>
-          <p className="desc">{`Token In Amount : ${payload[0].payload.tokenInAmount}`}</p>
-          <p className="desc">{`Token Out Type : ${payload[0].payload.tokenOutType}`}</p>
-          <p className="desc">{`Token Out Amount : ${payload[0].payload.tokenOutAmount}`}</p>
+          <p className="label" style={{ fontSize: "14px", fontWeight: "bold" }}>Date: {label}</p>
+          <p className="intro" style={{ fontSize: "12px" }}>Price: {payload[0].value}</p>
+          <p className="desc" style={{ fontSize: "12px" }}>In: {tokenInAmount} {tokenInType}</p>
+          <p className="desc" style={{ fontSize: "12px" }}>Out: {tokenOutAmount} {tokenOutType}</p>
         </div>
       );
     }
@@ -93,6 +93,12 @@ const Transactions = () => {
       <Box w={"526px"} h={"600px"} style={{ overflowY: "hidden" }}>
         <Header />
         <ScrollArea h={"100%"} scrollbars="y">
+        <div style={{ height: "40px" }}></div>
+        <Flex w={"100%"} align={"center"} direction={"column"} gap={1}>
+                <Title size={"h1"} style={{ fontWeight: 500 }} py={"24px"}>
+                  Transactions Over Time
+                </Title>
+              </Flex>
         <LineChart
         width={500}
         height={300}
@@ -110,7 +116,7 @@ const Transactions = () => {
             <Flex h={"100%"} direction={"column"} align={"center"}>
               <Flex w={"100%"} align={"center"} direction={"column"} gap={1}>
                 <Title size={"h1"} style={{ fontWeight: 500 }} py={"24px"}>
-                  Transactions
+                  Data
                 </Title>
                 <Divider w={"80%"} />
               </Flex>
