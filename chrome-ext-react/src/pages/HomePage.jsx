@@ -284,10 +284,6 @@ export default function HomePage() {
 
               <Divider w={"80%"} mb={"24px"} />
 
-              <Title size={"h2"} style={{ fontWeight: 400 }} mb={"12px"}>
-                Transactions
-              </Title>
-
               <Table horizontalSpacing="sm" highlightOnHover>
                 <Table.Thead>
                   <Table.Tr>
