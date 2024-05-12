@@ -183,6 +183,7 @@ export default function HomePage() {
 
       // Get transcations
       const transactionsResults = await async_get_txs(aKey, wKey, 0);
+      console.log(transactionsResults);
 
       if (transactionsResults.status == "1") {
         setTransactions(transactionsResults.result);
@@ -265,8 +266,8 @@ export default function HomePage() {
   return (
     <Box w={"526px"} h={"600px"} style={{ overflowY: "hidden", border: "1px solid black"}}>
       <Header />
-      <ScrollArea h={"100%"} scrollbars="y">
-        <Box w={"100%"} h={"520px"} px={"8px"}>
+      <ScrollArea w={"100%"} scrollbars="y">
+        <Box w={"100%"} h={"520px"} px={"8px"} sty>
           {loading && (
             <Flex
               h={"100%"}
@@ -283,10 +284,6 @@ export default function HomePage() {
               <BalanceHeader />
 
               <Divider w={"80%"} mb={"24px"} />
-
-              <Title size={"h2"} style={{ fontWeight: 400 }} mb={"12px"}>
-                Transactions
-              </Title>
 
               <Table horizontalSpacing="sm" highlightOnHover>
                 <Table.Thead>

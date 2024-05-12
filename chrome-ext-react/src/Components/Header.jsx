@@ -71,10 +71,12 @@ export default function Header() {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(chrome);
-      const out = await chrome.storage.local.get(["key"]);
-      console.log("result: ", out);
-      console.log("value: ", out.key);
+      try {
+        console.log(chrome);
+        const out = await chrome.storage.local.get(["key"]);
+        console.log("result: ", out);
+        console.log("value: ", out.key);
+      } catch (error) {}
     };
     fetchData();
   }, []);
