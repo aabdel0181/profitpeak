@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Flex,
@@ -9,9 +9,11 @@ import {
   Transition,
 } from "@mantine/core";
 
-import { IconLogout, IconCopy, IconHome } from "@tabler/icons-react";
+import { IconLogout, IconCopy } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useHover } from "@mantine/hooks";
+
+import MenuButton from "./MenuButton";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -33,10 +35,6 @@ export default function Header() {
     localStorage.removeItem("walletKey");
     localStorage.removeItem("apiKey");
     navigate("/");
-  };
-
-  const onClickHome = () => {
-    navigate("/home");
   };
 
   const copyWalletKey = () => {
@@ -71,6 +69,18 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(chrome);
+        const out = await chrome.storage.local.get(["key"]);
+        console.log("result: ", out);
+        console.log("value: ", out.key);
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <Flex
@@ -88,16 +98,18 @@ export default function Header() {
           align={"center"}
           justify={"center"}
         >
-          <ActionIcon
+          {/* <ActionIcon
             variant="light"
             aria-label="Logout"
             pos={"relative"}
             top={"0px"}
             right={"0px"}
             onClick={onClickHome}
+            size={"lg"}
           >
             <IconHome style={{ width: "70%", height: "70%" }} stroke={1.5} />
-          </ActionIcon>
+          </ActionIcon> */}
+          <MenuButton />
         </Flex>
         <Flex align={"center"} justify={"center"} style={{ flexGrow: "2" }}>
           <Popover
@@ -111,7 +123,7 @@ export default function Header() {
               <Flex
                 ref={ref}
                 bg={hovered ? "#f8f8f8" : "white"}
-                h={"32px"}
+                h={"40px"}
                 px={"8px"}
                 gap={"6px"}
                 align={"center"}
@@ -122,10 +134,15 @@ export default function Header() {
                 }}
                 onClick={copyWalletKey}
               >
-                <Text size="sm" style={{ userSelect: "none" }}>
+                <Text size="md" style={{ userSelect: "none" }}>
                   {parseWalletKey(walletKey)}
                 </Text>
-                <ThemeIcon variant="white" aria-label="Copy" bg={"transparent"}>
+                <ThemeIcon
+                  variant="white"
+                  aria-label="Copy"
+                  bg={"transparent"}
+                  size={"lg"}
+                >
                   <IconCopy
                     style={{ width: "70%", height: "70%" }}
                     stroke={1.5}
@@ -170,6 +187,7 @@ export default function Header() {
             top={"0px"}
             right={"0px"}
             onClick={onClickLogout}
+            size={"lg"}
           >
             <IconLogout style={{ width: "70%", height: "70%" }} stroke={1.5} />
           </ActionIcon>

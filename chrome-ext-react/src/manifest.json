@@ -1,10 +1,20 @@
 {
   "manifest_version": 3,
   "name": "Profit Peak",
-  "description": "A Web3 Extension",
+  "description": "Cryptocurrency transaction analytics: gain insights into trade history, profit/loss calculations, and trends analysis",
   "version": "0.1",
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": "pp_logo.png"
   },
-  "permissions": ["storage"]
+  "permissions": [
+    "scripting",
+    "tabs",
+    "activeTab",
+    "unlimitedStorage"
+],
+  "host_permissions": [
+      "https://*/*",
+      "http://*/*"
+  ]
 }

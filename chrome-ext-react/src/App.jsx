@@ -1,67 +1,32 @@
-import {
-  Box,
-  Button,
-  Flex,
-  useMantineColorScheme,
-  Title,
-  Input,
-  Divider,
-} from "@mantine/core";
-import { useState, useEffect } from "react";
+import { useMantineColorScheme } from "@mantine/core";
+import { useEffect } from "react";
 import ConnectPage from "./pages/ConnectPage";
 import HomePage from "./pages/HomePage";
 import Transactions from "./pages/Transactions";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
+
+// console.log(process.env.REACT_APP_GECKO_API_KEY);
+
+import "./index.css";
+
 function App() {
   useMantineColorScheme("light");
   const { setColorScheme } = useMantineColorScheme();
 
-  const [walletKey, setWalletKey] = useState("");
-  const [apiKey, setApiKey] = useState("");
-
-  const [loggedIn, setLoggedIn] = useState(false);
-
   useEffect(() => {
-    
     // Set color theme
-    setColorScheme("light")
-
-    // Check if 'walletKey' exists in localStorage when the component mounts
-    const storedWalletKey = localStorage.getItem("walletKey");
-    const storedApiKey = localStorage.getItem("apiKey");
-    if (storedWalletKey) {
-      setWalletKey(storedWalletKey);
-    }
-    if (storedApiKey) {
-      setApiKey(storedApiKey);
-    }
-
-    if (storedWalletKey && storedApiKey) {
-      setLoggedIn(true);
-    }
+    setColorScheme("light");
   }, []);
 
   return (
     <div>
-      <MemoryRouter >
+      <MemoryRouter>
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <ConnectPage
-                walletKey={walletKey}
-                setWalletKey={setWalletKey}
-                apiKey={apiKey}
-                setApiKey={setApiKey}
-                setLoggedIn={setLoggedIn}
-              />
-            }
-          />
+          <Route exact path="/" element={<ConnectPage />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/home" element={<HomePage />} />
         </Routes>
-      </MemoryRouter >
+      </MemoryRouter>
     </div>
   );
 
