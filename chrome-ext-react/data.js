@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import fs from 'fs';
 // Define the API URL and function to fetch transaction data
 // const apiKey = process.env.REACT_APP_GECKO_API_KEY;
 // console.log(apiKey);
@@ -29,11 +30,11 @@ async function async_get_txs(api_key, address, start_date) {
     // data.result.forEach((transaction) => {
     //   transaction.value = parseFloat(transaction.value) / Math.pow(10, 18);
     // });
-    data.result.forEach((transaction) => {
-      transaction.timeStamp = new Date(
-        parseInt(transaction.timeStamp, 10) * 1000
-      );
-    });
+    // data.result.forEach((transaction) => {
+    //   transaction.timeStamp = new Date(
+    //     parseInt(transaction.timeStamp, 10) * 1000
+    //   );
+    // });
     // data.result.forEach((transaction) => {
     //   transaction.valueUsd = transaction.value * ethUsdRate;
     // });
@@ -43,6 +44,51 @@ async function async_get_txs(api_key, address, start_date) {
     console.error("Error:", error);
   }
   // 564d51775ef4d4bd9c10d35d6e1b467b218db22ea0abe9dfebb6edf8caf48447
+}
+async function getCoinIdCoinCap() {
+  try {
+      const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/map';
+      const options = {
+          method: 'GET',
+          headers: {
+              accept: 'application/json',
+              'X-CMC_PRO_API_KEY': '0685549f-d9a5-4c08-99f8-e45351b8f2cf',
+          }
+      };
+
+      const response = await fetch(url, options);
+      const data = await response.json();
+      const filteredData = data.data.filter(coin => coin.rank <= 100);
+      const sortedData = filteredData.sort((a, b) => a.rank - b.rank);
+      fs.writeFileSync('sorted_crypto_data.json', JSON.stringify(sortedData, null, 2));
+      return sortedData;
+      // const coin = data.find(coin => coin.symbol === ticker.toLowerCase());
+
+      // if (coin) {
+      //     return coin.id;
+      // } else {
+      //     throw new Error(`Coin with ticker '${ticker}' not found.`);
+      // }
+  } catch (error) {
+      throw new Error(`Error fetching data: ${error}`);
+  }
+}
+
+function checkTickerExists(ticker) {
+  try {
+      const rawData = fs.readFileSync('sorted_crypto_data.json');
+      const cryptoData = JSON.parse(rawData);
+
+      const coin = cryptoData.find(coin => coin.symbol.toLowerCase() === ticker.toLowerCase());
+      if (coin) {
+        return coin.slug;
+      } else {
+          return null;
+      }
+  } catch (error) {
+      console.error('Error:', error.message);
+      return false; 
+  }
 }
 
 
@@ -83,19 +129,33 @@ async function getCoinId(ticker) {
 // 2 -90 days = 30 minutes cache
 // 90 days = 12 hours cache
 
+// in coin name, out coin name, time, output: historical date for each coin
+// convert amount coin to usd
 async function historicalData(inName, inAmt, outName, outAmt, time) {
   try {
-    const url = `https://api.coingecko.com/api/v3/coins/${inName}/market_chart/range?vs_currency=usd&from=${time}&to=9999999999`;
-    const options = {
+    const inUrl = `https://api.coingecko.com/api/v3/coins/${inName}/market_chart/range?vs_currency=usd&from=${time}&to=9999999999`;
+    const outUrl = `https://api.coingecko.com/api/v3/coins/${outName}/market_chart/range?vs_currency=usd&from=${time}&to=9999999999`;
+    const inOptions = {
       method: 'GET',
       headers: {
         accept: 'application/json', 
         'x-cg-demo-api-key': 'CG-aBJNgqwjUNLeSoXcHHJdR4Ko'
       }
     };
-    const response = await fetch(url, options);
-    const data = await response.json();
-    return data;
+    const outOptions = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json', 
+        'x-cg-demo-api-key': 'CG-aBJNgqwjUNLeSoXcHHJdR4Ko'
+      }
+    };
+    const inResponse = await fetch(inUrl, inOptions);
+    const outResponse = await fetch(outUrl, outOptions);
+    const inData = await inResponse.json();
+    const outData = await outResponse.json();
+    inData.prices = inData.prices.map(([timestamp, value]) => [timestamp, value * inAmt]);
+    outData.prices = outData.prices.map(([timestamp, value]) => [timestamp, value * outAmt]);
+    return { inData, outData };
     // console.log(data);
   } catch (error) {
     throw new Error(`Error fetching data: ${error}`);
@@ -142,16 +202,28 @@ async function getInternalTransactions(api_key, txHash, address) {
       }
     }
   }
-  try {
-    const btcId = await getCoinId("eth");
-    console.log("ID for ticker 'eth':", btcId);
-  } catch (error) {
-      console.error(error);
-  }
-  try {
-    const fun = await historicalData("bitcoin", 1, "bitcoin", 3, 1713658546);
-    console.log(fun);
-  } catch (error) {
-    console.error(error);
-  }
+  // try {
+  //   const info = await getCoinIdCoinCap();
+  //   console.log(info);
+  // } catch (error) {
+  //   console.error(error);
+  // }
+  // try {
+  //   const btcId = await getCoinId("doge");
+  //   console.log("ID for ticker 'dogecoin':", btcId);
+  // } catch (error) {
+  //     console.error(error);
+  // }
+  // try {
+  //   const fun = await historicalData("bitcoin", 1, "bitcoin", 3, 1713658546);
+  //   console.log(fun);
+  // } catch (error) {
+  //   console.error(error);
+  // }
+  const ticker = 'BTC';
+  const slugName = checkTickerExists(ticker);
+  console.log(`Ticker ${ticker} exists: ${slugName}`);
+  const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
+  console.log(fun.inData.prices);
+  console.log(fun.outData.prices);
 })();

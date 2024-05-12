@@ -30,6 +30,7 @@
     "dayjs": "^1.11.10",
     "dotenv": "^16.4.5",
     "embla-carousel-react": "^8.0.0",
+    "fs": "^0.0.1-security",
     "meta": "^2.2.25",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",

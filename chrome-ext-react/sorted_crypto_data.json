@@ -1,0 +1,1408 @@
+[
+  {
+    "id": 1,
+    "rank": 1,
+    "name": "Bitcoin",
+    "symbol": "BTC",
+    "slug": "bitcoin",
+    "is_active": 1,
+    "first_historical_data": "2010-07-13T00:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 1027,
+    "rank": 2,
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "slug": "ethereum",
+    "is_active": 1,
+    "first_historical_data": "2015-08-07T14:45:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 825,
+    "rank": 3,
+    "name": "Tether USDt",
+    "symbol": "USDT",
+    "slug": "tether",
+    "is_active": 1,
+    "first_historical_data": "2015-02-25T13:30:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+    }
+  },
+  {
+    "id": 1839,
+    "rank": 4,
+    "name": "BNB",
+    "symbol": "BNB",
+    "slug": "bnb",
+    "is_active": 1,
+    "first_historical_data": "2017-07-25T04:30:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 5426,
+    "rank": 5,
+    "name": "Solana",
+    "symbol": "SOL",
+    "slug": "solana",
+    "is_active": 1,
+    "first_historical_data": "2020-04-10T04:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 3408,
+    "rank": 6,
+    "name": "USDC",
+    "symbol": "USDC",
+    "slug": "usd-coin",
+    "is_active": 1,
+    "first_historical_data": "2018-10-08T18:45:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    }
+  },
+  {
+    "id": 52,
+    "rank": 7,
+    "name": "XRP",
+    "symbol": "XRP",
+    "slug": "xrp",
+    "is_active": 1,
+    "first_historical_data": "2013-08-04T18:50:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 11419,
+    "rank": 8,
+    "name": "Toncoin",
+    "symbol": "TON",
+    "slug": "toncoin",
+    "is_active": 1,
+    "first_historical_data": "2021-08-26T14:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 74,
+    "rank": 9,
+    "name": "Dogecoin",
+    "symbol": "DOGE",
+    "slug": "dogecoin",
+    "is_active": 1,
+    "first_historical_data": "2013-12-15T14:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 2010,
+    "rank": 10,
+    "name": "Cardano",
+    "symbol": "ADA",
+    "slug": "cardano",
+    "is_active": 1,
+    "first_historical_data": "2017-10-01T20:30:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 5994,
+    "rank": 11,
+    "name": "Shiba Inu",
+    "symbol": "SHIB",
+    "slug": "shiba-inu",
+    "is_active": 1,
+    "first_historical_data": "2020-08-01T00:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce"
+    }
+  },
+  {
+    "id": 5805,
+    "rank": 12,
+    "name": "Avalanche",
+    "symbol": "AVAX",
+    "slug": "avalanche",
+    "is_active": 1,
+    "first_historical_data": "2020-09-22T06:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 1958,
+    "rank": 13,
+    "name": "TRON",
+    "symbol": "TRX",
+    "slug": "tron",
+    "is_active": 1,
+    "first_historical_data": "2017-09-13T01:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 6636,
+    "rank": 14,
+    "name": "Polkadot",
+    "symbol": "DOT",
+    "slug": "polkadot-new",
+    "is_active": 1,
+    "first_historical_data": "2020-08-20T03:25:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 1831,
+    "rank": 15,
+    "name": "Bitcoin Cash",
+    "symbol": "BCH",
+    "slug": "bitcoin-cash",
+    "is_active": 1,
+    "first_historical_data": "2017-07-23T16:25:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 1975,
+    "rank": 16,
+    "name": "Chainlink",
+    "symbol": "LINK",
+    "slug": "chainlink",
+    "is_active": 1,
+    "first_historical_data": "2017-09-20T20:50:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x514910771af9ca656af840dff83e8264ecf986ca"
+    }
+  },
+  {
+    "id": 6535,
+    "rank": 17,
+    "name": "NEAR Protocol",
+    "symbol": "NEAR",
+    "slug": "near-protocol",
+    "is_active": 1,
+    "first_historical_data": "2020-10-13T05:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 3890,
+    "rank": 18,
+    "name": "Polygon",
+    "symbol": "MATIC",
+    "slug": "polygon",
+    "is_active": 1,
+    "first_historical_data": "2019-04-28T20:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 2,
+    "rank": 19,
+    "name": "Litecoin",
+    "symbol": "LTC",
+    "slug": "litecoin",
+    "is_active": 1,
+    "first_historical_data": "2013-04-28T18:45:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 3957,
+    "rank": 20,
+    "name": "UNUS SED LEO",
+    "symbol": "LEO",
+    "slug": "unus-sed-leo",
+    "is_active": 1,
+    "first_historical_data": "2019-05-21T18:35:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x2af5d2ad76741191d15dfe7bf6ac92d4bd912ca3"
+    }
+  },
+  {
+    "id": 8916,
+    "rank": 21,
+    "name": "Internet Computer",
+    "symbol": "ICP",
+    "slug": "internet-computer",
+    "is_active": 1,
+    "first_historical_data": "2021-05-10T11:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 18,
+      "name": "ICP",
+      "symbol": "ICP",
+      "slug": "internet-computer",
+      "token_address": "ryjl3-tyaaa-aaaaa-aaaba-cai"
+    }
+  },
+  {
+    "id": 4943,
+    "rank": 22,
+    "name": "Dai",
+    "symbol": "DAI",
+    "slug": "multi-collateral-dai",
+    "is_active": 1,
+    "first_historical_data": "2019-11-22T01:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f"
+    }
+  },
+  {
+    "id": 7083,
+    "rank": 23,
+    "name": "Uniswap",
+    "symbol": "UNI",
+    "slug": "uniswap",
+    "is_active": 1,
+    "first_historical_data": "2020-09-17T01:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+    }
+  },
+  {
+    "id": 5690,
+    "rank": 24,
+    "name": "Render",
+    "symbol": "RNDR",
+    "slug": "render",
+    "is_active": 1,
+    "first_historical_data": "2020-06-11T10:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24"
+    }
+  },
+  {
+    "id": 1321,
+    "rank": 25,
+    "name": "Ethereum Classic",
+    "symbol": "ETC",
+    "slug": "ethereum-classic",
+    "is_active": 1,
+    "first_historical_data": "2016-07-24T13:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 26081,
+    "rank": 26,
+    "name": "First Digital USD",
+    "symbol": "FDUSD",
+    "slug": "first-digital-usd",
+    "is_active": 1,
+    "first_historical_data": "2023-07-26T08:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xc5f0f7b66764F6ec8C8Dff7BA683102295E16409"
+    }
+  },
+  {
+    "id": 4642,
+    "rank": 27,
+    "name": "Hedera",
+    "symbol": "HBAR",
+    "slug": "hedera",
+    "is_active": 1,
+    "first_historical_data": "2019-09-17T09:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 21794,
+    "rank": 28,
+    "name": "Aptos",
+    "symbol": "APT",
+    "slug": "aptos",
+    "is_active": 1,
+    "first_historical_data": "2022-10-19T02:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 24478,
+    "rank": 29,
+    "name": "Pepe",
+    "symbol": "PEPE",
+    "slug": "pepe",
+    "is_active": 1,
+    "first_historical_data": "2023-04-17T06:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x6982508145454ce325ddbe47a25d4ec3d2311933"
+    }
+  },
+  {
+    "id": 3794,
+    "rank": 30,
+    "name": "Cosmos",
+    "symbol": "ATOM",
+    "slug": "cosmos",
+    "is_active": 1,
+    "first_historical_data": "2019-03-14T20:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 27075,
+    "rank": 31,
+    "name": "Mantle",
+    "symbol": "MNT",
+    "slug": "mantle",
+    "is_active": 1,
+    "first_historical_data": "2023-07-17T11:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x3c3a81e81dc49a522a592e7622a7e711c06bf354"
+    }
+  },
+  {
+    "id": 3635,
+    "rank": 32,
+    "name": "Cronos",
+    "symbol": "CRO",
+    "slug": "cronos",
+    "is_active": 1,
+    "first_historical_data": "2018-12-14T17:35:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 10603,
+    "rank": 33,
+    "name": "Immutable",
+    "symbol": "IMX",
+    "slug": "immutable-x",
+    "is_active": 1,
+    "first_historical_data": "2021-11-05T11:50:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff"
+    }
+  },
+  {
+    "id": 2280,
+    "rank": 34,
+    "name": "Filecoin",
+    "symbol": "FIL",
+    "slug": "filecoin",
+    "is_active": 1,
+    "first_historical_data": "2017-12-13T20:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 512,
+    "rank": 35,
+    "name": "Stellar",
+    "symbol": "XLM",
+    "slug": "stellar",
+    "is_active": 1,
+    "first_historical_data": "2014-08-05T05:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 3897,
+    "rank": 36,
+    "name": "OKB",
+    "symbol": "OKB",
+    "slug": "okb",
+    "is_active": 1,
+    "first_historical_data": "2019-04-30T21:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x75231f58b43240c9718dd58b4967c5114342a86c"
+    }
+  },
+  {
+    "id": 4847,
+    "rank": 37,
+    "name": "Stacks",
+    "symbol": "STX",
+    "slug": "stacks",
+    "is_active": 1,
+    "first_historical_data": "2019-10-28T16:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 28752,
+    "rank": 38,
+    "name": "dogwifhat",
+    "symbol": "WIF",
+    "slug": "dogwifhat",
+    "is_active": 1,
+    "first_historical_data": "2023-12-19T09:20:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 16,
+      "name": "Solana",
+      "symbol": "SOL",
+      "slug": "solana",
+      "token_address": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm"
+    }
+  },
+  {
+    "id": 20396,
+    "rank": 39,
+    "name": "Kaspa",
+    "symbol": "KAS",
+    "slug": "kaspa",
+    "is_active": 1,
+    "first_historical_data": "2022-06-01T09:35:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 6719,
+    "rank": 40,
+    "name": "The Graph",
+    "symbol": "GRT",
+    "slug": "the-graph",
+    "is_active": 1,
+    "first_historical_data": "2020-12-17T18:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xc944e90c64b2c07662a292be6244bdf05cda44a7"
+    }
+  },
+  {
+    "id": 5632,
+    "rank": 41,
+    "name": "Arweave",
+    "symbol": "AR",
+    "slug": "arweave",
+    "is_active": 1,
+    "first_historical_data": "2020-05-27T02:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 11841,
+    "rank": 42,
+    "name": "Arbitrum",
+    "symbol": "ARB",
+    "slug": "arbitrum",
+    "is_active": 1,
+    "first_historical_data": "2023-03-23T13:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xB50721BCf8d664c30412Cfbc6cf7a15145234ad1"
+    }
+  },
+  {
+    "id": 11840,
+    "rank": 43,
+    "name": "Optimism",
+    "symbol": "OP",
+    "slug": "optimism-ethereum",
+    "is_active": 1,
+    "first_historical_data": "2022-05-31T16:30:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 42,
+      "name": "Optimism",
+      "symbol": "OP",
+      "slug": "optimism-ethereum",
+      "token_address": "0x4200000000000000000000000000000000000042"
+    }
+  },
+  {
+    "id": 3077,
+    "rank": 44,
+    "name": "VeChain",
+    "symbol": "VET",
+    "slug": "vechain",
+    "is_active": 1,
+    "first_historical_data": "2018-08-03T17:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 22974,
+    "rank": 45,
+    "name": "Bittensor",
+    "symbol": "TAO",
+    "slug": "bittensor",
+    "is_active": 1,
+    "first_historical_data": "2023-03-05T23:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 1518,
+    "rank": 46,
+    "name": "Maker",
+    "symbol": "MKR",
+    "slug": "maker",
+    "is_active": 1,
+    "first_historical_data": "2017-01-29T19:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2"
+    }
+  },
+  {
+    "id": 328,
+    "rank": 47,
+    "name": "Monero",
+    "symbol": "XMR",
+    "slug": "monero",
+    "is_active": 1,
+    "first_historical_data": "2014-05-21T01:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 20947,
+    "rank": 48,
+    "name": "Sui",
+    "symbol": "SUI",
+    "slug": "sui",
+    "is_active": 1,
+    "first_historical_data": "2023-05-03T12:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 176,
+      "name": "Sui Network",
+      "symbol": "SUI",
+      "slug": "sui",
+      "token_address": "0x2::sui::SUI"
+    }
+  },
+  {
+    "id": 7226,
+    "rank": 49,
+    "name": "Injective",
+    "symbol": "INJ",
+    "slug": "injective",
+    "is_active": 1,
+    "first_historical_data": "2020-10-20T04:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xe28b3b32b6c345a34ff64674606124dd5aceca30"
+    }
+  },
+  {
+    "id": 2416,
+    "rank": 50,
+    "name": "Theta Network",
+    "symbol": "THETA",
+    "slug": "theta-network",
+    "is_active": 1,
+    "first_historical_data": "2018-01-17T17:30:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 3513,
+    "rank": 51,
+    "name": "Fantom",
+    "symbol": "FTM",
+    "slug": "fantom",
+    "is_active": 1,
+    "first_historical_data": "2018-10-30T00:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 4157,
+    "rank": 52,
+    "name": "THORChain",
+    "symbol": "RUNE",
+    "slug": "thorchain",
+    "is_active": 1,
+    "first_historical_data": "2019-07-23T20:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 3773,
+    "rank": 53,
+    "name": "Fetch.ai",
+    "symbol": "FET",
+    "slug": "fetch",
+    "is_active": 1,
+    "first_historical_data": "2019-03-02T23:50:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 22861,
+    "rank": 54,
+    "name": "Celestia",
+    "symbol": "TIA",
+    "slug": "celestia",
+    "is_active": 1,
+    "first_historical_data": "2023-10-31T15:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 90,
+      "name": "Osmosis",
+      "symbol": "OSMO",
+      "slug": "osmosis",
+      "token_address": "ibc/D79E7D83AB399BFFF93433E54FAA480C191248FC556924A2A8351AE2638B3877"
+    }
+  },
+  {
+    "id": 10804,
+    "rank": 55,
+    "name": "FLOKI",
+    "symbol": "FLOKI",
+    "slug": "floki-inu",
+    "is_active": 1,
+    "first_historical_data": "2021-07-10T04:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xcf0c122c6b73ff809c693db761e7baebe62b6a2e"
+    }
+  },
+  {
+    "id": 8000,
+    "rank": 56,
+    "name": "Lido DAO",
+    "symbol": "LDO",
+    "slug": "lido-dao",
+    "is_active": 1,
+    "first_historical_data": "2021-01-04T20:35:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x5a98fcbea516cf06857215779fd812ca3bef1b32"
+    }
+  },
+  {
+    "id": 11092,
+    "rank": 57,
+    "name": "Bitget Token",
+    "symbol": "BGB",
+    "slug": "bitget-token-new",
+    "is_active": 1,
+    "first_historical_data": "2021-07-29T12:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x19de6b897ed14a376dda0fe53a5420d2ac828a28"
+    }
+  },
+  {
+    "id": 4030,
+    "rank": 58,
+    "name": "Algorand",
+    "symbol": "ALGO",
+    "slug": "algorand",
+    "is_active": 1,
+    "first_historical_data": "2019-06-21T00:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 23095,
+    "rank": 59,
+    "name": "Bonk",
+    "symbol": "BONK",
+    "slug": "bonk1",
+    "is_active": 1,
+    "first_historical_data": "2022-12-30T07:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 16,
+      "name": "Solana",
+      "symbol": "SOL",
+      "slug": "solana",
+      "token_address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+    }
+  },
+  {
+    "id": 23149,
+    "rank": 60,
+    "name": "Sei",
+    "symbol": "SEI",
+    "slug": "sei",
+    "is_active": 1,
+    "first_historical_data": "2023-08-15T12:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 23254,
+    "rank": 61,
+    "name": "Core",
+    "symbol": "CORE",
+    "slug": "core-dao",
+    "is_active": 1,
+    "first_historical_data": "2023-02-08T12:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 29210,
+    "rank": 62,
+    "name": "Jupiter",
+    "symbol": "JUP",
+    "slug": "jupiter-ag",
+    "is_active": 1,
+    "first_historical_data": "2024-01-31T15:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 16,
+      "name": "Solana",
+      "symbol": "SOL",
+      "slug": "solana",
+      "token_address": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"
+    }
+  },
+  {
+    "id": 7431,
+    "rank": 63,
+    "name": "Akash Network",
+    "symbol": "AKT",
+    "slug": "akash-network",
+    "is_active": 1,
+    "first_historical_data": "2020-10-19T02:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 4558,
+    "rank": 64,
+    "name": "Flow",
+    "symbol": "FLOW",
+    "slug": "flow",
+    "is_active": 1,
+    "first_historical_data": "2021-01-26T15:45:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 7080,
+    "rank": 65,
+    "name": "Gala",
+    "symbol": "GALA",
+    "slug": "gala",
+    "is_active": 1,
+    "first_historical_data": "2020-09-17T09:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xd1d2Eb1B1e90B638588728b4130137D262C87cae"
+    }
+  },
+  {
+    "id": 30171,
+    "rank": 66,
+    "name": "Ethena",
+    "symbol": "ENA",
+    "slug": "ethena",
+    "is_active": 1,
+    "first_historical_data": "2024-04-02T07:25:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x57e114B691Db790C35207b2e685D4A43181e6061"
+    }
+  },
+  {
+    "id": 7278,
+    "rank": 67,
+    "name": "Aave",
+    "symbol": "AAVE",
+    "slug": "aave",
+    "is_active": 1,
+    "first_historical_data": "2020-10-04T12:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"
+    }
+  },
+  {
+    "id": 3602,
+    "rank": 68,
+    "name": "Bitcoin SV",
+    "symbol": "BSV",
+    "slug": "bitcoin-sv",
+    "is_active": 1,
+    "first_historical_data": "2018-11-09T02:30:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 28298,
+    "rank": 69,
+    "name": "Beam",
+    "symbol": "BEAM",
+    "slug": "onbeam",
+    "is_active": 1,
+    "first_historical_data": "2023-10-27T06:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x62D0A8458eD7719FDAF978fe5929C6D342B0bFcE"
+    }
+  },
+  {
+    "id": 3155,
+    "rank": 70,
+    "name": "Quant",
+    "symbol": "QNT",
+    "slug": "quant",
+    "is_active": 1,
+    "first_historical_data": "2018-08-10T20:25:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x4a220e6096b25eadb88358cb44068a3248254675"
+    }
+  },
+  {
+    "id": 2424,
+    "rank": 71,
+    "name": "SingularityNET",
+    "symbol": "AGIX",
+    "slug": "singularitynet",
+    "is_active": 1,
+    "first_historical_data": "2018-01-19T01:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x5B7533812759B45C2B44C19e320ba2cD2681b542"
+    }
+  },
+  {
+    "id": 16086,
+    "rank": 72,
+    "name": "BitTorrent (New)",
+    "symbol": "BTT",
+    "slug": "bittorrent-new",
+    "is_active": 1,
+    "first_historical_data": "2022-01-11T16:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xc669928185dbce49d2230cc9b0979be6dc797957"
+    }
+  },
+  {
+    "id": 28324,
+    "rank": 73,
+    "name": "dYdX (Native)",
+    "symbol": "DYDX",
+    "slug": "dydx-chain",
+    "is_active": 1,
+    "first_historical_data": "2023-10-31T08:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 90,
+      "name": "Osmosis",
+      "symbol": "OSMO",
+      "slug": "osmosis",
+      "token_address": "ibc/831F0B1BBB1D08A2B75311892876D71565478C532967545476DF4C2D7492E48C"
+    }
+  },
+  {
+    "id": 13502,
+    "rank": 74,
+    "name": "Worldcoin",
+    "symbol": "WLD",
+    "slug": "worldcoin-org",
+    "is_active": 1,
+    "first_historical_data": "2023-07-24T07:25:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x163f8c2467924be0ae7b5347228cabf260318753"
+    }
+  },
+  {
+    "id": 21159,
+    "rank": 75,
+    "name": "Ondo",
+    "symbol": "ONDO",
+    "slug": "ondo-finance",
+    "is_active": 1,
+    "first_historical_data": "2024-01-18T12:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xfAbA6f8e4a5E8Ab82F62fe7C39859FA577269BE3"
+    }
+  },
+  {
+    "id": 4066,
+    "rank": 76,
+    "name": "Chiliz",
+    "symbol": "CHZ",
+    "slug": "chiliz",
+    "is_active": 1,
+    "first_historical_data": "2019-07-01T19:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x3506424f91fd33084466f402d5d97f05f8e3b4af"
+    }
+  },
+  {
+    "id": 7950,
+    "rank": 77,
+    "name": "Flare",
+    "symbol": "FLR",
+    "slug": "flare",
+    "is_active": 1,
+    "first_historical_data": "2023-01-10T03:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 6892,
+    "rank": 78,
+    "name": "MultiversX",
+    "symbol": "EGLD",
+    "slug": "multiversx-egld",
+    "is_active": 1,
+    "first_historical_data": "2020-09-04T09:25:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 29587,
+    "rank": 79,
+    "name": "Wormhole",
+    "symbol": "W",
+    "slug": "wormhole",
+    "is_active": 1,
+    "first_historical_data": "2024-04-03T11:50:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xB0fFa8000886e57F86dd5264b9582b2Ad87b2b91"
+    }
+  },
+  {
+    "id": 1376,
+    "rank": 80,
+    "name": "Neo",
+    "symbol": "NEO",
+    "slug": "neo",
+    "is_active": 1,
+    "first_historical_data": "2016-09-09T03:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:30:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 9481,
+    "rank": 81,
+    "name": "Pendle",
+    "symbol": "PENDLE",
+    "slug": "pendle",
+    "is_active": 1,
+    "first_historical_data": "2021-04-29T02:20:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x808507121b80c02388fad14726482e061b8da827"
+    }
+  },
+  {
+    "id": 6783,
+    "rank": 82,
+    "name": "Axie Infinity",
+    "symbol": "AXS",
+    "slug": "axie-infinity",
+    "is_active": 1,
+    "first_historical_data": "2020-11-03T13:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xbb0e17ef65f82ab018d8edd776e8dd940327b28b"
+    }
+  },
+  {
+    "id": 2087,
+    "rank": 83,
+    "name": "KuCoin Token",
+    "symbol": "KCS",
+    "slug": "kucoin-token",
+    "is_active": 1,
+    "first_historical_data": "2017-10-24T17:35:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xf34960d9d60be18cc1d5afc1a6f012a723a28811"
+    }
+  },
+  {
+    "id": 6210,
+    "rank": 84,
+    "name": "The Sandbox",
+    "symbol": "SAND",
+    "slug": "the-sandbox",
+    "is_active": 1,
+    "first_historical_data": "2020-08-14T13:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x3845badAde8e6dFF049820680d1F14bD3903a5d0"
+    }
+  },
+  {
+    "id": 10791,
+    "rank": 85,
+    "name": "eCash",
+    "symbol": "XEC",
+    "slug": "ecash",
+    "is_active": 1,
+    "first_historical_data": "2021-07-08T05:05:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 2011,
+    "rank": 86,
+    "name": "Tezos",
+    "symbol": "XTZ",
+    "slug": "tezos",
+    "is_active": 1,
+    "first_historical_data": "2017-10-02T15:55:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 1765,
+    "rank": 87,
+    "name": "EOS",
+    "symbol": "EOS",
+    "slug": "eos",
+    "is_active": 1,
+    "first_historical_data": "2017-07-01T19:10:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 8425,
+    "rank": 88,
+    "name": "JasmyCoin",
+    "symbol": "JASMY",
+    "slug": "jasmy",
+    "is_active": 1,
+    "first_historical_data": "2021-02-11T01:20:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x7420B4b9a0110cdC71fB720908340C03F9Bc03EC"
+    }
+  },
+  {
+    "id": 9104,
+    "rank": 89,
+    "name": "AIOZ Network",
+    "symbol": "AIOZ",
+    "slug": "aioz-network",
+    "is_active": 1,
+    "first_historical_data": "2021-04-02T19:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 22691,
+    "rank": 90,
+    "name": "Starknet",
+    "symbol": "STRK",
+    "slug": "starknet-token",
+    "is_active": 1,
+    "first_historical_data": "2024-02-20T12:25:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xCa14007Eff0dB1f8135f4C25B34De49AB0d42766"
+    }
+  },
+  {
+    "id": 8646,
+    "rank": 91,
+    "name": "Mina",
+    "symbol": "MINA",
+    "slug": "mina",
+    "is_active": 1,
+    "first_historical_data": "2021-06-01T00:00:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 14101,
+    "rank": 92,
+    "name": "Ronin",
+    "symbol": "RON",
+    "slug": "ronin",
+    "is_active": 1,
+    "first_historical_data": "2022-01-27T13:50:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 2586,
+    "rank": 93,
+    "name": "Synthetix",
+    "symbol": "SNX",
+    "slug": "synthetix",
+    "is_active": 1,
+    "first_historical_data": "2018-03-14T16:50:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f"
+    }
+  },
+  {
+    "id": 7334,
+    "rank": 94,
+    "name": "Conflux",
+    "symbol": "CFX",
+    "slug": "conflux-network",
+    "is_active": 1,
+    "first_historical_data": "2020-11-10T04:35:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 1966,
+    "rank": 95,
+    "name": "Decentraland",
+    "symbol": "MANA",
+    "slug": "decentraland",
+    "is_active": 1,
+    "first_historical_data": "2017-09-17T00:40:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
+    }
+  },
+  {
+    "id": 4269,
+    "rank": 96,
+    "name": "GateToken",
+    "symbol": "GT",
+    "slug": "gatetoken",
+    "is_active": 1,
+    "first_historical_data": "2019-08-26T14:45:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0xe66747a101bff2dba3697199dcce5b743b454759"
+    }
+  },
+  {
+    "id": 25028,
+    "rank": 97,
+    "name": "ORDI",
+    "symbol": "ORDI",
+    "slug": "ordi",
+    "is_active": 1,
+    "first_historical_data": "2023-05-08T06:15:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 190,
+      "name": "Ordinals - BRC20",
+      "symbol": "BTC",
+      "slug": "bitcoin",
+      "token_address": "b61b0172d95e266c18aea0c624db987e971a5d6d4ebc2aaed85da4642d635735i0"
+    }
+  },
+  {
+    "id": 18876,
+    "rank": 98,
+    "name": "ApeCoin",
+    "symbol": "APE",
+    "slug": "apecoin-ape",
+    "is_active": 1,
+    "first_historical_data": "2022-03-17T12:35:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 1,
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "slug": "ethereum",
+      "token_address": "0x4d224452801aced8b2f0aebe155379bb5d594381"
+    }
+  },
+  {
+    "id": 5665,
+    "rank": 99,
+    "name": "Helium",
+    "symbol": "HNT",
+    "slug": "helium",
+    "is_active": 1,
+    "first_historical_data": "2020-06-08T23:20:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": null
+  },
+  {
+    "id": 29870,
+    "rank": 100,
+    "name": "BOOK OF MEME",
+    "symbol": "BOME",
+    "slug": "book-of-meme",
+    "is_active": 1,
+    "first_historical_data": "2024-03-14T12:30:00.000Z",
+    "last_historical_data": "2024-05-10T18:35:00.000Z",
+    "platform": {
+      "id": 16,
+      "name": "Solana",
+      "symbol": "SOL",
+      "slug": "solana",
+      "token_address": "ukHH6c7mMyiWCf1b9pnWe25TSpkDDt3H5pQZgZ74J82"
+    }
+  }
+]
