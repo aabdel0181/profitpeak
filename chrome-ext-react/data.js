@@ -6,6 +6,8 @@ const web3 = new Web3(
     "https://mainnet.infura.io/v3/f501be219210471882183e36c2e042db"
   )
 );
+import axios from "axios";
+import cheerio from "cheerio";
 const uni_abi = [
   {
     inputs: [
@@ -195,37 +197,6 @@ const uni_abi = [
   { stateMutability: "payable", type: "receive" },
 ];
 
-// async function decode_tx(inputData) {
-//   abiDecoder.addABI(uni_abi);
-
-//   console.log("inputted data: ", inputData);
-
-//   const data = abiDecoder.decodeMethod(inputData);
-//   console.log("un-decoded data: ", data);
-//   // Access each parameter directly by name
-//   let commands = data.params.find((p) => p.name === "commands").value;
-//   let inputs = data.params.find((p) => p.name === "inputs").value;
-//   let deadline = data.params.find((p) => p.name === "deadline").value;
-
-//   console.log("Commands:", commands);
-//   console.log("Inputs:", inputs);
-//   console.log("Deadline:", deadline);
-
-//   // //filter input data, find transaction value
-//   // let filteredData = data.params.filter((param) => param.name === "data");
-
-//   // // select hex data with transaction value
-//   // let hexDat = filteredData[0].value[0];
-
-//   // // decode hex data
-//   // let decodedData = abiDecoder.decodeMethod(hexDat);
-//   // console.log("decoded data: ", decodedData);
-//   // // select swap value
-//   // let amount = decodedData.params[0].value.amountIn;
-//   // amount = ethers.utils.formatEther(amount);
-//   // console.log("amount: ", amount);
-// }
-
 async function decode_tx(inputData) {
   console.log("inputted data: ", inputData);
 
@@ -293,7 +264,7 @@ async function decodeTransactionInput(contractAddress, inputData) {
 }
 // Define the API URL and function to fetch transaction data
 async function async_get_txs(api_key, address, start_date) {
-  const norm_txs = `https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${start_date}&endblock=99999999&page=1&offset=10&sort=asc&apikey=${api_key}`;
+  const norm_txs = `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${start_date}&endblock=99999999&page=1&offset=1000&sort=asc&apikey=${api_key}`;
   const ethToUsdUrl =
     "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD&api_key=564d51775ef4d4bd9c10d35d6e1b467b218db22ea0abe9dfebb6edf8caf48447";
   try {
@@ -308,23 +279,6 @@ async function async_get_txs(api_key, address, start_date) {
     }
     const ethToUsdData = await ethToUsdResponse.json();
     const ethUsdRate = ethToUsdData.USD;
-    // console.log(data);
-    // only get transactions using uniswap:
-    // data.result = data.result.filter(transaction => {
-    //   return transaction.from === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD' || transaction.to === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD';
-    // });
-    data.result.forEach((transaction) => {
-      transaction.value = parseFloat(transaction.value) / Math.pow(10, 18);
-    });
-    data.result.forEach((transaction) => {
-      transaction.timeStamp = new Date(
-        parseInt(transaction.timeStamp, 10) * 1000
-      );
-    });
-    data.result.forEach((transaction) => {
-      transaction.valueUsd = transaction.value * ethUsdRate;
-    });
-    console.log(data);
     return data; // Return the parsed JSON data
   } catch (error) {
     console.error("Error:", error);
@@ -332,54 +286,83 @@ async function async_get_txs(api_key, address, start_date) {
   // 564d51775ef4d4bd9c10d35d6e1b467b218db22ea0abe9dfebb6edf8caf48447
 }
 
-// Function to fetch internal transactions by transaction hash
-async function getInternalTransactions(api_key, txHash, address) {
-  const url = `https://api-sepolia.etherscan.io/api?module=account&action=txlistinternal&txhash=${txHash}&apikey=${api_key}`;
+async function fetchTransactionDetails(txHash) {
+  const url = `https://etherscan.io/tx/${txHash}`;
 
   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch internal transactions");
+    const { data } = await axios.get(url);
+    const $ = cheerio.load(data);
+    const wrapperContent = $("#wrapperContent");
+
+    // Extracting the token details directly from the structure
+    let detailsText = wrapperContent.text(); // Get all text from the container
+
+    // regex
+    const tokenRegex =
+      /(\d+\.?\d*)\s*([a-zA-Z]+)\s*for\s*(\d+\.?\d*)\s*([a-zA-Z]+)\s*on\s*Uniswap/;
+
+    let matches = detailsText.match(tokenRegex);
+    if (matches && matches.length >= 5) {
+      const swapDetails = {
+        tokenInAmount: matches[1].trim(),
+        tokenInName: matches[2].trim(),
+        tokenOutAmount: matches[3].trim(),
+        tokenOutName: matches[4].trim(),
+      };
+
+      console.log(swapDetails);
+      return swapDetails;
+    } else {
+      console.log("No match found or incorrect format in transaction details.");
+      return null;
     }
-    const data = await response.json();
-    console.log("Internal Transactions:", data);
-    return data;
   } catch (error) {
-    console.error("Error fetching internal transactions:", error);
+    console.error("Error fetching transaction details:", error);
+    return null;
   }
 }
 
-// Main function to process transactions
-(async () => {
-  const uniswapAddress = "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD";
-  const tx_response = await async_get_txs(
-    "ZSPYYMRN3UBZTQ1KF3VMHY19JUKNRYWTF5",
-    "0xbE197f43EC7b1B0f50BACF77c12C262C435EeD4D",
-    "0"
-  );
+// Function to map IN and OUT transactions for a specific address and contract
+async function mapTransactions(userAddress, uniswapAddress, apiKey) {
+  const transactionsToUniswap = await async_get_txs(apiKey, userAddress, 0);
 
-  // Processing the response to check for transactions to Uniswap
-  if (tx_response && tx_response.result) {
-    for (const tx of tx_response.result) {
+  // TODO: create empty mapping
+  const transactionPairs = []; // This will be an array of objects
+
+  if (transactionsToUniswap && transactionsToUniswap.result) {
+    for (const tx of transactionsToUniswap.result) {
       if (tx.to.toLowerCase() === uniswapAddress.toLowerCase()) {
-        console.log("Transaction to Uniswap found:", tx);
-        await getInternalTransactions(
-          "ZSPYYMRN3UBZTQ1KF3VMHY19JUKNRYWTF5",
-          tx.hash,
-          "0xbE197f43EC7b1B0f50BACF77c12C262C435EeD4D"
-        ); // Fetch and output internal transactions
+        console.log("Transaction to Uniswap found!", tx);
+        transactionPairs.push(fetchTransactionDetails(tx.hash));
       }
     }
   }
-  for (const tx of tx_response.result) {
-    console.log("decoding tx: ", tx);
-    decode_tx(tx.input);
-    // decodeTransactionInput(uniswapAddress, tx.input)
-    //   .then((decoded) => {
-    //     console.log("Decoded Input Data:", decoded);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error decoding input:", error);
-    //   });
+
+  return transactionPairs;
+}
+
+async function processTransactions() {
+  const userAddress = "0xd262677A79Fb6962084a546D63a162F2336de298";
+  const uniswapAddress = "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD";
+  const apiKey = "DEUAPZEBDSV83YQCZ8Q37S544SERNH4RZ9";
+  console.log("PROCESSING...");
+  try {
+    const transactions = await mapTransactions(
+      userAddress,
+      uniswapAddress,
+      apiKey
+    );
+    transactions.forEach((txPair) => {
+      console.log("Transaction IN:", txPair.in);
+      if (txPair.out) {
+        console.log("Transaction OUT:", txPair.out);
+      } else {
+        console.log("No matching OUT transaction found.");
+      }
+    });
+  } catch (error) {
+    console.error("Error processing transactions:", error);
   }
-})();
+}
+
+processTransactions();
