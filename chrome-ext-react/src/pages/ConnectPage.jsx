@@ -62,6 +62,8 @@ export default function ConnectPage() {
       localStorage.setItem("walletKey", walletKey);
       localStorage.setItem("apiKey", apiKey);
       navigate("/home");
+
+      // Todo, chrome storage check for previous data
     }
 
     setLoading(false);
