@@ -1,11 +1,9 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
-// Define the API URL and function to fetch transaction data
-// const apiKey = process.env.REACT_APP_GECKO_API_KEY;
-// console.log(apiKey);
-// console.log(import.meta.env.REACT_APP_GECKO_API_KEY)
 
-// console.log(`${process.env.REACT_APP_FIREBASE_API_KEY}`);
+/*
+Get transaction history for an address
+*/
 async function async_get_txs(api_key, address, start_date) {
   const norm_txs = `https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${start_date}&endblock=99999999&page=1&offset=10&sort=asc&apikey=${api_key}`;
   const ethToUsdUrl =
@@ -22,29 +20,26 @@ async function async_get_txs(api_key, address, start_date) {
     }
     const ethToUsdData = await ethToUsdResponse.json();
     const ethUsdRate = ethToUsdData.USD;
-    // console.log(data);
     // only get transactions using uniswap:
     // data.result = data.result.filter(transaction => {
     //   return transaction.from === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD' || transaction.to === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD';
-    // });
-    // data.result.forEach((transaction) => {
-    //   transaction.value = parseFloat(transaction.value) / Math.pow(10, 18);
     // });
     // data.result.forEach((transaction) => {
     //   transaction.timeStamp = new Date(
     //     parseInt(transaction.timeStamp, 10) * 1000
     //   );
     // });
-    // data.result.forEach((transaction) => {
-    //   transaction.valueUsd = transaction.value * ethUsdRate;
-    // });
     console.log(data);
     return data; // Return the parsed JSON data
   } catch (error) {
     console.error("Error:", error);
   }
-  // 564d51775ef4d4bd9c10d35d6e1b467b218db22ea0abe9dfebb6edf8caf48447
 }
+
+/*
+Using the Coin Cap API to get the top 100 coins and 
+store the array in sorted_crypto_data.json
+*/
 async function getCoinIdCoinCap() {
   try {
       const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/map';
@@ -74,6 +69,11 @@ async function getCoinIdCoinCap() {
   }
 }
 
+/*
+Input a ticker like "btc" and it checks if 
+it exists in the sorted_crypto_data.json file. Then, if the coin exists,
+return the coin full name (slug) like "bitcoin"
+*/
 function checkTickerExists(ticker) {
   try {
       const rawData = fs.readFileSync('sorted_crypto_data.json');
@@ -92,32 +92,6 @@ function checkTickerExists(ticker) {
 }
 
 
-async function getCoinId(ticker) {
-    try {
-        const url = 'https://api.coingecko.com/api/v3/coins/list';
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                'x-cg-demo-api-key': 'CG-aBJNgqwjUNLeSoXcHHJdR4Ko'
-            }
-        };
-
-        const response = await fetch(url, options);
-        const data = await response.json();
-
-        const coin = data.find(coin => coin.symbol === ticker.toLowerCase());
-
-        if (coin) {
-            return coin.id;
-        } else {
-            throw new Error(`Coin with ticker '${ticker}' not found.`);
-        }
-    } catch (error) {
-        throw new Error(`Error fetching data: ${error}`);
-    }
-}
-
 
 // 1 day from current time = 5-minutely data
 // 1 day from any time (except current time) = hourly data
@@ -131,6 +105,13 @@ async function getCoinId(ticker) {
 
 // in coin name, out coin name, time, output: historical date for each coin
 // convert amount coin to usd
+
+/* returns objects inData and outData. These have the arrays: prices, market_caps, and total_volumes
+We are only interested in prices.
+It also modifies the prices array to multiply the value by the amount of the coin bought.
+Gets prices in USD.
+When getting the prices array, must call like this: returnedName.inData.prices
+*/
 async function historicalData(inName, inAmt, outName, outAmt, time) {
   try {
     const inUrl = `https://api.coingecko.com/api/v3/coins/${inName}/market_chart/range?vs_currency=usd&from=${time}&to=9999999999`;
