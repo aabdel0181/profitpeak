@@ -1,5 +1,9 @@
 # profitpeak
 
+## Chrome Extension Short Demo
+
+<img src="./static/profitpeak_demo.gif" alt="Screenshot" style="width:50%;">
+
 ## How to load as extension
 
 1. Download the latest release `.zip` file from [https://github.com/aabdel0181/profitpeak/releases/tag/public](https://github.com/aabdel0181/profitpeak/releases/tag/public)
