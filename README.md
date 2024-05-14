@@ -8,7 +8,7 @@ TODO: insert GIF
 
 1. cd into the "chrome-ext-react" directory via: `cd chrome-ext-react`
 2. Install dependencies via: `npm install --force`
-3. Install scripting dependencies. Note, there is a packaging issue with these libraries so please run the following commands
+3. Install scripting dependencies if the building fails after running (2). Note, there is a packaging issue with these libraries so please run the following commands
 
 - `npm install axios --save`
 - `npm install cheerio --save`

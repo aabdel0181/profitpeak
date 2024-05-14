@@ -11,6 +11,8 @@ import {
   Button,
 } from "@mantine/core";
 
+import myData from "../data/sorted_crypto_data.json";
+
 import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -26,7 +28,6 @@ export default function ConnectPage() {
   const navigate = useNavigate();
 
   async function validateKeyAddress(walletKey, apiKey) {
-
     const url = `https://api.etherscan.io/api?module=account&action=balance&address=${walletKey}&tag=latest&apikey=${apiKey}`;
     try {
       const response = await fetch(url);
@@ -45,9 +46,7 @@ export default function ConnectPage() {
         setWalletKeyError("Invalid wallet address!");
       }
       return false;
-
     } catch (error) {
-
       setWalletKeyError("Invalid wallet address!");
       setApiKeyError("Invalid Api key!");
       return false;
@@ -57,7 +56,7 @@ export default function ConnectPage() {
   async function onConnectClick() {
     setLoading(true);
 
-    if (await validateKeyAddress(walletKey, apiKey) == true) {
+    if ((await validateKeyAddress(walletKey, apiKey)) == true) {
       console.log("reached!");
       localStorage.setItem("walletKey", walletKey);
       localStorage.setItem("apiKey", apiKey);
@@ -71,9 +70,14 @@ export default function ConnectPage() {
 
   // Auto login/connect if api and walletkey are present
   useEffect(() => {
+    // Loading data from json file
+    myData.forEach((coin) => {
+      localStorage.setItem(coin.symbol, coin.slug);
+    });
+
     const wKey = localStorage.getItem("walletKey");
     const aKey = localStorage.getItem("apiKey");
-    
+
     if (wKey && aKey) {
       setWalletKey(wKey);
       setApiKey(aKey);
@@ -99,7 +103,8 @@ export default function ConnectPage() {
             Profit Peak
           </Title>
           <Text c="dimmed" mb={"64px"} size="sm" ta="center" mt={5}>
-          Cryptocurrency transaction analytics: gain insights into trade history, profit/loss calculations, and trends analysis
+            Cryptocurrency transaction analytics: gain insights into trade
+            history, profit/loss calculations, and trends analysis
           </Text>
 
           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -135,7 +140,12 @@ export default function ConnectPage() {
                 Get Api key
               </Anchor>
             </Group>
-            <Button onClick={onConnectClick} loading={loading} fullWidth mt="xl">
+            <Button
+              onClick={onConnectClick}
+              loading={loading}
+              fullWidth
+              mt="xl"
+            >
               Connect Wallet
             </Button>
           </Paper>

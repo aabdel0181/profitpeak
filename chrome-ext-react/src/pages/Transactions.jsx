@@ -94,6 +94,9 @@ const Transactions = () => {
       console.log(txns);
       setLoading(false);
     };
+    const fetchHistoricalData = async () => {
+      
+    }
 
     fetchData();
   }, []);
