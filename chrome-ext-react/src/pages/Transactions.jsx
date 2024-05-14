@@ -28,6 +28,7 @@ import {
   processTransactions,
   formatRelativeTime,
 } from "../utils/etherscan_calls";
+import { historicalData, checkTickerExists } from "../utils/etherscan_calls";
 
 const transactions = [
   {
@@ -58,16 +59,8 @@ const transactions = [
 
 const Transactions = () => {
   const [fetchedTransactions, setFetchedTransactions] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const chartData = transactions.map((transaction) => ({
-    name: new Date(transaction.time).toLocaleDateString(),
-    price: transaction.price,
-    tokenInType: transaction.tokenInType,
-    tokenInAmount: transaction.tokenInAmount,
-    tokenOutType: transaction.tokenOutType,
-    tokenOutAmount: transaction.tokenOutAmount,
-  }));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,30 +69,60 @@ const Transactions = () => {
       const aKey = await localStorage.getItem("apiKey");
 
       console.log(wKey, aKey);
-      const txns = await processTransactions(wKey, aKey);
-      setFetchedTransactions(
-        txns
-          .filter((item) => item !== null)
-          .map((item) => {
-            if (item) {
-              return {
-                ...item,
-                tokenInType: item.tokenInName,
-                tokenOutType: item.tokenOutName,
-              };
-            }
-          })
-          .reverse()
-      );
-      console.log(txns);
+      let txns = await processTransactions(wKey, aKey);
+      txns = txns
+        .filter((item) => item !== null)
+        .map((item) => {
+          if (item) {
+            return {
+              ...item,
+              tokenInType: item.tokenInName,
+              tokenOutType: item.tokenOutName,
+            };
+          }
+        })
+        .reverse();
+      setFetchedTransactions(txns);
+
+      transactions.map((transaction) => ({
+        name: new Date(transaction.time).toLocaleDateString(),
+        price: transaction.price,
+        tokenInType: transaction.tokenInType,
+        tokenInAmount: transaction.tokenInAmount,
+        tokenOutType: transaction.tokenOutType,
+        tokenOutAmount: transaction.tokenOutAmount,
+      }));
+
       setLoading(false);
     };
-    const fetchHistoricalData = async () => {
-      
-    }
 
     fetchData();
   }, []);
+
+  const fetchHistoricalDataOnClick = async (index) => {
+    let item = fetchedTransactions[index];
+
+    let tokenIn = item.tokenInType;
+    let tokenOut = item.tokenOutType;
+
+    const slugIn = checkTickerExists(tokenIn);
+    const slugOut = checkTickerExists(tokenOut);
+
+    console.log(slugIn, slugOut);
+
+    if (!slugIn || !slugOut) {
+      return null;
+    }
+
+    let out = await historicalData(
+      slugIn,
+      item.tokenInAmount,
+      slugOut,
+      item.tokenOutAmount,
+      parseInt(fetchedTransactions[index].timestamp)
+    );
+    console.log(out);
+  };
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -166,6 +189,7 @@ const Transactions = () => {
                           withArrow
                           shadow="md"
                           key={i}
+                          onOpen={() => fetchHistoricalDataOnClick(i)}
                         >
                           <Popover.Target>
                             <Table.Tr>
@@ -173,9 +197,13 @@ const Transactions = () => {
                                 {formatRelativeTime(item.timestamp)}
                               </Table.Td>
                               <Table.Td>{item.tokenInType}</Table.Td>
-                              <Table.Td>{parseFloat(item.tokenInAmount).toFixed(6)}</Table.Td>
+                              <Table.Td>
+                                {parseFloat(item.tokenInAmount).toFixed(6)}
+                              </Table.Td>
                               <Table.Td>{item.tokenOutType}</Table.Td>
-                              <Table.Td>{parseFloat(item.tokenOutAmount).toFixed(6)}</Table.Td>
+                              <Table.Td>
+                                {parseFloat(item.tokenOutAmount).toFixed(6)}
+                              </Table.Td>
                             </Table.Tr>
                           </Popover.Target>
                           <Popover.Dropdown height={300}>
