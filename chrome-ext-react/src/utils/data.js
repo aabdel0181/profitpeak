@@ -154,6 +154,30 @@ async function historicalData(inName, inAmt, outName, outAmt, time) {
   }
 }
 
+
+async function netTransactions(transactions) {
+  let netUSD = 0;
+
+  for (const transaction of transactions) {
+      if (!transaction) continue;
+
+      // convert all token tickers to slug
+      const tokenIn = checkTickerExists(transaction.tokenInName);
+      const tokenOut = checkTickerExists(transaction.tokenOutName);
+      console.log(tokenIn, tokenOut);
+      // const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
+      const val = await historicalData(tokenIn, transaction.tokenInAmount, tokenOut, transaction.tokenOutAmount, transaction.timestamp);
+
+      const numIn = val.inData.prices[0][1]; 
+      const numOut = val.outData.prices[0][1];
+
+      netUSD += (numOut - numIn);
+  }
+
+  return netUSD;
+}
+
+
 // Define the API URL and function to fetch transaction data
 // const apiKey = process.env.REACT_APP_GECKO_API_KEY;
 // console.log(apiKey);
@@ -252,6 +276,8 @@ async function processTransactions() {
 (async () => {
   let x = await processTransactions();
   console.log(x);
+  let y = await netTransactions(x);
+  console.log(y);
   // try {
   //   const info = await getCoinIdCoinCap();
   //   console.log(info);
@@ -270,10 +296,10 @@ async function processTransactions() {
   // } catch (error) {
   //   console.error(error);
   // }
-  const ticker = "BTC";
-  const slugName = checkTickerExists(ticker);
-  console.log(`Ticker ${ticker} exists: ${slugName}`);
-  const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
-  console.log(fun.inData);
-  console.log(fun.outData);
+  // const ticker = "BTC";
+  // const slugName = checkTickerExists(ticker);
+  // console.log(`Ticker ${ticker} exists: ${slugName}`);
+  // const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
+  // console.log(fun.inData.prices[0][1]);
+  // console.log(fun.outData);
 })();
