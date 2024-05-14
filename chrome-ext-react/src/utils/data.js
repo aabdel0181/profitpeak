@@ -160,7 +160,7 @@ async function historicalData(inName, inAmt, outName, outAmt, time) {
 // console.log(import.meta.env.REACT_APP_GECKO_API_KEY)
 
 // function for webscraping on a particular tx hash
-async function fetchTransactionDetails(txHash) {
+async function fetchTransactionDetails(txHash, time) {
   const url = `https://etherscan.io/tx/${txHash}`;
   try {
     const { data } = await axios.get(url);
@@ -177,6 +177,7 @@ async function fetchTransactionDetails(txHash) {
     let matches = detailsText.match(tokenRegex);
     if (matches && matches.length >= 5) {
       const swapDetails = {
+        timestamp: time,
         tokenInAmount: matches[1].trim(),
         tokenInName: matches[2].trim(),
         tokenOutAmount: matches[3].trim(),
@@ -216,7 +217,7 @@ async function mapTransactions(userAddress, uniswapAddress, apiKey) {
     for (const tx of transactionsToUniswap.result) {
       if (tx.to.toLowerCase() === uniswapAddress.toLowerCase()) {
         // calls webscraper for each tx to uniswap found
-        transactionPairs.push(fetchTransactionDetails(tx.hash));
+        transactionPairs.push(fetchTransactionDetails(tx.hash, tx.timeStamp));
       }
     }
   }
