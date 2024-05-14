@@ -270,10 +270,10 @@ async function processTransactions() {
   // } catch (error) {
   //   console.error(error);
   // }
-  // const ticker = "BTC";
-  // const slugName = checkTickerExists(ticker);
-  // console.log(`Ticker ${ticker} exists: ${slugName}`);
-  // const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
-  // console.log(fun.inData);
-  // console.log(fun.outData);
+  const ticker = "BTC";
+  const slugName = checkTickerExists(ticker);
+  console.log(`Ticker ${ticker} exists: ${slugName}`);
+  const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
+  console.log(fun.inData);
+  console.log(fun.outData);
 })();
