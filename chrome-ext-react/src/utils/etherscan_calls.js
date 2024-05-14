@@ -1,5 +1,8 @@
-const ETHERSCAN_API = "https://api.etherscan.io/api"
-const ETHERSCAN_BLOCK_URL = "https://api.etherscan.io/block/"
+import axios from "axios";
+import cheerio from "cheerio";
+
+const ETHERSCAN_API = "https://api.etherscan.io/api";
+const ETHERSCAN_BLOCK_URL = "https://api.etherscan.io/block/";
 
 export const get_balance = async (apiKey, address) => {
   const url = `${ETHERSCAN_API}?module=account&action=balance&address=${address}&tag=latest&apikey=${apiKey}`;
@@ -33,6 +36,38 @@ export const async_get_txs = async (api_key, address, start_date) => {
     console.error("Error:", error);
   }
 };
+
+async function async_get_txs_spec(api_key, address, start_date) {
+  const norm_txs = `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${start_date}&endblock=99999999&page=1&offset=10000&sort=asc&apikey=${api_key}`;
+  const ethToUsdUrl =
+    "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD&api_key=564d51775ef4d4bd9c10d35d6e1b467b218db22ea0abe9dfebb6edf8caf48447";
+  try {
+    const response = await fetch(norm_txs);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    const ethToUsdResponse = await fetch(ethToUsdUrl);
+    if (!ethToUsdResponse.ok) {
+      throw new Error("Failed to fetch ETH to USD conversion rate");
+    }
+    const ethToUsdData = await ethToUsdResponse.json();
+    const ethUsdRate = ethToUsdData.USD;
+    // only get transactions using uniswap:
+    // data.result = data.result.filter(transaction => {
+    //   return transaction.from === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD' || transaction.to === '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD';
+    // });
+    // data.result.forEach((transaction) => {
+    //   transaction.timeStamp = new Date(
+    //     parseInt(transaction.timeStamp, 10) * 1000
+    //   );
+    // });
+    // console.log(data);
+    return data; // Return the parsed JSON data
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
 export const formatRelativeTime = (timestamp) => {
   const now = Date.now(); // Current timestamp in milliseconds
@@ -83,5 +118,89 @@ export const timestampToLocalTime = (timestamp) => {
 };
 
 export const get_block_url = (block) => {
-    return ETHERSCAN_BLOCK_URL + block
+  return ETHERSCAN_BLOCK_URL + block;
+};
+
+// function for webscraping on a particular tx hash
+async function fetchTransactionDetails(txHash, time) {
+  const url = `https://etherscan.io/tx/${txHash}`;
+  try {
+    const { data } = await axios.get(url);
+    const $ = cheerio.load(data);
+    const wrapperContent = $("#wrapperContent");
+
+    // Extracting the token details directly from the structure
+    let detailsText = wrapperContent.text(); // Get all text from the container
+
+    // regex
+    const tokenRegex =
+      /(\d+\.?\d*)\s*([a-zA-Z]+)\s*for\s*(\d+\.?\d*)\s*([a-zA-Z]+)\s*on\s*Uniswap/;
+
+    let matches = detailsText.match(tokenRegex);
+    if (matches && matches.length >= 5) {
+      const swapDetails = {
+        timestamp: time,
+        tokenInAmount: matches[1].trim(),
+        tokenInName: matches[2].trim(),
+        tokenOutAmount: matches[3].trim(),
+        tokenOutName: matches[4].trim(),
+      };
+
+      console.log(swapDetails)
+
+      // console.log(swapDetails);
+      return swapDetails;
+    } else {
+      console.log("No match found or incorrect format in transaction details.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching transaction details:", error);
+    return null;
+  }
+}
+
+// Function to map IN and OUT transactions for a specific address and contract
+async function mapTransactions(userAddress, uniswapAddress, apiKey) {
+  const transactionsToUniswap = await async_get_txs_spec(
+    apiKey,
+    userAddress,
+    0
+  );
+
+  // TODO: create empty mapping
+  const transactionPairs = []; // This will be an array of objects
+
+  if (transactionsToUniswap && transactionsToUniswap.result) {
+    for (const tx of transactionsToUniswap.result) {
+      if (tx.to.toLowerCase() === uniswapAddress.toLowerCase()) {
+        // calls webscraper for each tx to uniswap found
+        transactionPairs.push(fetchTransactionDetails(tx.hash, tx.timeStamp));
+      }
+    }
+  }
+  return transactionPairs;
+}
+
+// main function that fetches all txs, and gets the mapping
+export async function processTransactions(userAddress, apiKey) {
+  const uniswapAddress = "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD";
+  console.log("PROCESSING...");
+  try {
+    console.log(userAddress, uniswapAddress, apiKey);
+    // array of promises
+    const transactionsPromises = await mapTransactions(
+      userAddress,
+      uniswapAddress,
+      apiKey
+    );
+
+    // Await all promises to resolve
+    const transactions = await Promise.all(transactionsPromises);
+    // console.log("OUTPUTS: ", transactions);
+    return transactions;
+  } catch (error) {
+    console.error("Error processing transactions:", error);
+    return null;
+  }
 }
