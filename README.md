@@ -39,7 +39,7 @@
 
 ## Licence
 
-Copyright (c) 2004 ProfitPeak (Rayyan Shaik, Marc Vaz, Chelsea Pan, Ahmed Abdellah). All rights reserved.
+Copyright (c) 2024 ProfitPeak (Rayyan Shaik, Marc Vaz, Chelsea Pan, Ahmed Abdellah). All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use the Software for non-commercial purposes only. This includes the rights to use, copy, and distribute the Software in its original form.
 
