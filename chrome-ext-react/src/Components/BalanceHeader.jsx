@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import {Title, Loader} from "@mantine/core";
 
-import { get_balance } from "../utils/abitrum_test_calls";
+import { get_balance } from "../utils/etherscan_calls";
 
 export default function BalanceHeader() {
 

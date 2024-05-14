@@ -27,7 +27,7 @@ export default function ConnectPage() {
 
   async function validateKeyAddress(walletKey, apiKey) {
 
-    const url = `https://api-sepolia.etherscan.io/api?module=account&action=balance&address=${walletKey}&tag=latest&apikey=${apiKey}`;
+    const url = `https://api.etherscan.io/api?module=account&action=balance&address=${walletKey}&tag=latest&apikey=${apiKey}`;
     try {
       const response = await fetch(url);
 

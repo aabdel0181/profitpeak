@@ -2,6 +2,7 @@ import fetch from "node-fetch";
 import fs from "fs";
 import axios from "axios";
 import cheerio from "cheerio";
+
 /*
 Get transaction history for an address
 */
@@ -30,7 +31,7 @@ async function async_get_txs(api_key, address, start_date) {
     //     parseInt(transaction.timeStamp, 10) * 1000
     //   );
     // });
-    console.log(data);
+    // console.log(data);
     return data; // Return the parsed JSON data
   } catch (error) {
     console.error("Error:", error);
@@ -239,7 +240,7 @@ async function processTransactions() {
 
     // Await all promises to resolve
     const transactions = await Promise.all(transactionsPromises);
-    console.log("OUTPUTS: ", transactions);
+    // console.log("OUTPUTS: ", transactions);
     return transactions;
   } catch (error) {
     console.error("Error processing transactions:", error);
@@ -248,7 +249,8 @@ async function processTransactions() {
 
 // Main function to process transactions
 (async () => {
-  processTransactions();
+  let x = await processTransactions();
+  console.log(x);
   // try {
   //   const info = await getCoinIdCoinCap();
   //   console.log(info);
@@ -267,10 +269,10 @@ async function processTransactions() {
   // } catch (error) {
   //   console.error(error);
   // }
-  const ticker = "BTC";
-  const slugName = checkTickerExists(ticker);
-  console.log(`Ticker ${ticker} exists: ${slugName}`);
-  const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
-  console.log(fun.inData.prices);
-  console.log(fun.outData.prices);
+  // const ticker = "BTC";
+  // const slugName = checkTickerExists(ticker);
+  // console.log(`Ticker ${ticker} exists: ${slugName}`);
+  // const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
+  // console.log(fun.inData);
+  // console.log(fun.outData);
 })();
