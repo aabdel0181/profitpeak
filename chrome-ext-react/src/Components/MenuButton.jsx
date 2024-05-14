@@ -1,17 +1,10 @@
 import {
-  Button,
   Menu,
-  Text,
   rem,
   useMantineTheme,
   ActionIcon,
 } from "@mantine/core";
 import {
-  IconSquareCheck,
-  IconPackage,
-  IconUsers,
-  IconCalendar,
-  IconChevronDown,
   IconMenu2,
   IconHome,
   IconSettings,
