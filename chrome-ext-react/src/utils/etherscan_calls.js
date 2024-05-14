@@ -146,7 +146,7 @@ async function fetchTransactionDetails(txHash, time) {
         tokenOutName: matches[4].trim(),
       };
 
-      console.log(swapDetails)
+      console.log(swapDetails);
 
       // console.log(swapDetails);
       return swapDetails;
@@ -202,5 +202,66 @@ export async function processTransactions(userAddress, apiKey) {
   } catch (error) {
     console.error("Error processing transactions:", error);
     return null;
+  }
+}
+
+/*
+Input a ticker like "btc" and it checks if 
+it exists in the sorted_crypto_data.json file. Then, if the coin exists,
+return the coin full name (slug) like "bitcoin"
+*/
+export function checkTickerExists(ticker) {
+  try {
+    const slug = localStorage.getItem(ticker);
+    if (slug) {
+      return slug;
+    }
+    return false;
+  } catch (error) {
+    console.error("Error:", error.message);
+    return false;
+  }
+}
+
+/* returns objects inData and outData. These have the arrays: prices, market_caps, and total_volumes
+We are only interested in prices.
+It also modifies the prices array to multiply the value by the amount of the coin bought.
+Gets prices in USD.
+When getting the prices array, must call like this: returnedName.inData.prices
+*/
+export async function historicalData(inName, inAmt, outName, outAmt, time) {
+  try {
+    const inUrl = `https://api.coingecko.com/api/v3/coins/${inName}/market_chart/range?vs_currency=usd&from=${time}&to=9999999999`;
+    const outUrl = `https://api.coingecko.com/api/v3/coins/${outName}/market_chart/range?vs_currency=usd&from=${time}&to=9999999999`;
+    const inOptions = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        "x-cg-demo-api-key": "CG-aBJNgqwjUNLeSoXcHHJdR4Ko",
+      },
+    };
+    const outOptions = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        "x-cg-demo-api-key": "CG-aBJNgqwjUNLeSoXcHHJdR4Ko",
+      },
+    };
+    const inResponse = await fetch(inUrl, inOptions);
+    const outResponse = await fetch(outUrl, outOptions);
+    const inData = await inResponse.json();
+    const outData = await outResponse.json();
+    inData.prices = inData.prices.map(([timestamp, value]) => [
+      timestamp,
+      value * inAmt,
+    ]);
+    outData.prices = outData.prices.map(([timestamp, value]) => [
+      timestamp,
+      value * outAmt,
+    ]);
+    return { inData, outData };
+    // console.log(data);
+  } catch (error) {
+    throw new Error(`Error fetching data: ${error}`);
   }
 }

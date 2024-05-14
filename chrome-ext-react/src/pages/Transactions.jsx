@@ -28,6 +28,7 @@ import {
   processTransactions,
   formatRelativeTime,
 } from "../utils/etherscan_calls";
+import { historicalData, checkTickerExists } from "../utils/etherscan_calls";
 
 const transactions = [
   {
@@ -58,16 +59,8 @@ const transactions = [
 
 const Transactions = () => {
   const [fetchedTransactions, setFetchedTransactions] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const chartData = transactions.map((transaction) => ({
-    name: new Date(transaction.time).toLocaleDateString(),
-    price: transaction.price,
-    tokenInType: transaction.tokenInType,
-    tokenInAmount: transaction.tokenInAmount,
-    tokenOutType: transaction.tokenOutType,
-    tokenOutAmount: transaction.tokenOutAmount,
-  }));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,30 +69,88 @@ const Transactions = () => {
       const aKey = await localStorage.getItem("apiKey");
 
       console.log(wKey, aKey);
-      const txns = await processTransactions(wKey, aKey);
-      setFetchedTransactions(
-        txns
-          .filter((item) => item !== null)
-          .map((item) => {
-            if (item) {
-              return {
-                ...item,
-                tokenInType: item.tokenInName,
-                tokenOutType: item.tokenOutName,
-              };
-            }
-          })
-          .reverse()
-      );
-      console.log(txns);
+      let txns = await processTransactions(wKey, aKey);
+      txns = txns
+        .filter((item) => item !== null)
+        .map((item) => {
+          if (item) {
+            return {
+              ...item,
+              tokenInType: item.tokenInName,
+              tokenOutType: item.tokenOutName,
+            };
+          }
+        })
+        .reverse();
+      setFetchedTransactions(txns);
+
+      transactions.map((transaction) => ({
+        name: new Date(transaction.time).toLocaleDateString(),
+        price: transaction.price,
+        tokenInType: transaction.tokenInType,
+        tokenInAmount: transaction.tokenInAmount,
+        tokenOutType: transaction.tokenOutType,
+        tokenOutAmount: transaction.tokenOutAmount,
+      }));
+
       setLoading(false);
     };
-    const fetchHistoricalData = async () => {
-      
-    }
 
     fetchData();
   }, []);
+
+  const fetchHistoricalDataOnClick = async (index) => {
+    let item = fetchedTransactions[index];
+
+    let tokenIn = item.tokenInType;
+    let tokenOut = item.tokenOutType;
+
+    const slugIn = checkTickerExists(tokenIn);
+    const slugOut = checkTickerExists(tokenOut);
+
+    console.log(slugIn, slugOut);
+
+    if (!slugIn || !slugOut) {
+      return null;
+    }
+
+    let out = await historicalData(
+      slugIn,
+      item.tokenInAmount,
+      slugOut,
+      item.tokenOutAmount,
+      parseInt(fetchedTransactions[index].timestamp)
+    );
+
+    // setChartData(
+    //   txns.map((transaction) => ({
+    //     name: new Date(transaction.time).toLocaleDateString(),
+    //     price: 1,
+    //     tokenInType: "a",
+    //     tokenInAmount: 2,
+    //     tokenOutType: "b",
+    //     tokenOutAmount: 3,
+    //   }))
+    // );
+    // time: "2022-01-03T00:00:00Z",
+    // tokenInType: "USDC",
+    // tokenInAmount: 8.432,
+    // tokenOutType: "ETH",
+    // tokenOutAmount: 1.43,
+    // price: 220,
+
+    setChartData(
+      out.inData.prices.map((item, index) => {
+        return {
+          time: new Date(item[0]).toLocaleDateString(),
+          price: item[1],
+          price2: out.outData.prices[index][1],
+        };
+      })
+    );
+
+    console.log(out);
+  };
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -109,16 +160,16 @@ const Transactions = () => {
       return (
         <div className="custom-tooltip">
           <p className="label" style={{ fontSize: "14px", fontWeight: "bold" }}>
-            Date: {label}
+            Date: {payload[0].payload.time}
           </p>
           <p className="intro" style={{ fontSize: "12px" }}>
-            Price: {payload[0].value}
+            Price Difference: {(payload[0].payload.price2 - payload[0].payload.price).toFixed(2)}
           </p>
           <p className="desc" style={{ fontSize: "12px" }}>
-            In: {tokenInAmount} {tokenInType}
+            In: {(payload[0].payload.price).toFixed(2)}
           </p>
           <p className="desc" style={{ fontSize: "12px" }}>
-            Out: {tokenOutAmount} {tokenOutType}
+            Out: {(payload[0].payload.price2).toFixed(2)}
           </p>
         </div>
       );
@@ -166,6 +217,7 @@ const Transactions = () => {
                           withArrow
                           shadow="md"
                           key={i}
+                          onOpen={() => fetchHistoricalDataOnClick(i)}
                         >
                           <Popover.Target>
                             <Table.Tr>
@@ -173,9 +225,13 @@ const Transactions = () => {
                                 {formatRelativeTime(item.timestamp)}
                               </Table.Td>
                               <Table.Td>{item.tokenInType}</Table.Td>
-                              <Table.Td>{parseFloat(item.tokenInAmount).toFixed(6)}</Table.Td>
+                              <Table.Td>
+                                {parseFloat(item.tokenInAmount).toFixed(6)}
+                              </Table.Td>
                               <Table.Td>{item.tokenOutType}</Table.Td>
-                              <Table.Td>{parseFloat(item.tokenOutAmount).toFixed(6)}</Table.Td>
+                              <Table.Td>
+                                {parseFloat(item.tokenOutAmount).toFixed(6)}
+                              </Table.Td>
                             </Table.Tr>
                           </Popover.Target>
                           <Popover.Dropdown height={300}>
@@ -205,7 +261,13 @@ const Transactions = () => {
                                   type="monotone"
                                   dataKey="price"
                                   stroke="#8884d8"
-                                  activeDot={{ r: 8 }}
+                                  activeDot={{ r: 4 }}
+                                />
+                                <Line
+                                  type="monotone"
+                                  dataKey="price2"
+                                  stroke="#d8c484"
+                                  activeDot={{ r: 4 }}
                                 />
                               </LineChart>
                             </Flex>

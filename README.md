@@ -2,7 +2,7 @@
 
 ## How to load as extension
 
-TODO: insert GIF
+<img src="./static/LoadExtensionVid1080p.gif" alt="Screenshot" style="width:100%;">
 
 ## How to build locally
 
