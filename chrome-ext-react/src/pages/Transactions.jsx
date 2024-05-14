@@ -144,6 +144,7 @@ const Transactions = () => {
         return {
           time: new Date(item[0]).toLocaleDateString(),
           price: item[1],
+          price2: out.outData.prices[index][1],
         };
       })
     );
@@ -159,16 +160,16 @@ const Transactions = () => {
       return (
         <div className="custom-tooltip">
           <p className="label" style={{ fontSize: "14px", fontWeight: "bold" }}>
-            Date: {label}
+            Date: {payload[0].payload.time}
           </p>
           <p className="intro" style={{ fontSize: "12px" }}>
-            Price Difference: {payload[0].value}
+            Price Difference: {(payload[0].payload.price2 - payload[0].payload.price).toFixed(2)}
           </p>
           <p className="desc" style={{ fontSize: "12px" }}>
-            In: {tokenInAmount} {tokenInType}
+            In: {(payload[0].payload.price).toFixed(2)}
           </p>
           <p className="desc" style={{ fontSize: "12px" }}>
-            Out: {tokenOutAmount} {tokenOutType}
+            Out: {(payload[0].payload.price2).toFixed(2)}
           </p>
         </div>
       );
@@ -260,7 +261,13 @@ const Transactions = () => {
                                   type="monotone"
                                   dataKey="price"
                                   stroke="#8884d8"
-                                  activeDot={{ r: 8 }}
+                                  activeDot={{ r: 4 }}
+                                />
+                                <Line
+                                  type="monotone"
+                                  dataKey="price2"
+                                  stroke="#d8c484"
+                                  activeDot={{ r: 4 }}
                                 />
                               </LineChart>
                             </Flex>
