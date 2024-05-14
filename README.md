@@ -1,5 +1,11 @@
 # profitpeak
 
+## Landing Page
+[https://marcvaz1.github.io/profitPeakLandingPage/](https://marcvaz1.github.io/profitPeakLandingPage/)
+
+## Video Demonstration
+
+
 ## Chrome Extension Short Demo
 
 <img src="./static/profitpeak_demo.gif" alt="Screenshot" style="width:50%;">
