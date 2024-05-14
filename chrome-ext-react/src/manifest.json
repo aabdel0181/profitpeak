@@ -2,19 +2,11 @@
   "manifest_version": 3,
   "name": "Profit Peak",
   "description": "Cryptocurrency transaction analytics: gain insights into trade history, profit/loss calculations, and trends analysis",
-  "version": "0.1",
+  "version": "1.0",
   "action": {
     "default_popup": "index.html",
     "default_icon": "pplogo.png"
   },
-  "permissions": [
-    "scripting",
-    "tabs",
-    "activeTab",
-    "unlimitedStorage"
-],
-  "host_permissions": [
-      "https://*/*",
-      "http://*/*"
-  ]
+  "permissions": ["scripting", "tabs", "activeTab", "unlimitedStorage"],
+  "host_permissions": ["https://*/*", "http://*/*"]
 }
