@@ -4,7 +4,7 @@
 [https://marcvaz1.github.io/profitPeakLandingPage/](https://marcvaz1.github.io/profitPeakLandingPage/)
 
 ## Video Demonstration
-https://drive.google.com/file/d/1ix7ziCldUymgyT08q8bOYNH0xOTlgmqj/view?usp=sharing 
+[https://drive.google.com/file/d/1ix7ziCldUymgyT08q8bOYNH0xOTlgmqj/view?usp=sharing](https://drive.google.com/file/d/1ix7ziCldUymgyT08q8bOYNH0xOTlgmqj/view?usp=sharing )
 
 ## Chrome Extension Short Demo
 
