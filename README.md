@@ -2,6 +2,10 @@
 
 ## How to load as extension
 
+1. Download the latest release `.zip` file from [https://github.com/aabdel0181/profitpeak/releases/tag/public](https://github.com/aabdel0181/profitpeak/releases/tag/public)
+2. Unzip the file, and consider the resulting folder (likely named `release_a_b`) to be the chrome extension's folder / dist folder
+3. Follow the `.gif` below to "load unpack" the chrome extension
+
 <img src="./static/LoadExtensionVid1080p.gif" alt="Screenshot" style="width:100%;">
 
 ## How to build locally
