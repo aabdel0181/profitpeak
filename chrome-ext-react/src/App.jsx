@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import Transactions from "./pages/Transactions";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import InitializePage from "./pages/InitializePage"
+import PortfolioPage from "./pages/PortfolioPage";
 
 
 // console.log(process.env.REACT_APP_GECKO_API_KEY);
@@ -28,6 +29,7 @@ function App() {
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/initialize" element={<InitializePage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
         </Routes>
       </MemoryRouter>
     </div>

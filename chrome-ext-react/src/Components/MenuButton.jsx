@@ -1,9 +1,4 @@
-import {
-  Menu,
-  rem,
-  useMantineTheme,
-  ActionIcon,
-} from "@mantine/core";
+import { Menu, rem, useMantineTheme, ActionIcon } from "@mantine/core";
 import {
   IconMenu2,
   IconHome,
@@ -95,21 +90,14 @@ export default function MenuButton() {
               stroke={1.5}
             />
           }
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/portfolio");
+          }}
         >
           Portfolio
         </Menu.Item>
         <Menu.Label>Utility</Menu.Label>
-        <Menu.Item
-          leftSection={
-            <IconSettings
-              style={{ width: rem(16), height: rem(16) }}
-              color={theme.colors.black}
-              stroke={1.5}
-            />
-          }
-        >
-          Settings
-        </Menu.Item>
         <Menu.Item
           color="blue"
           leftSection={

@@ -154,22 +154,20 @@ const Transactions = () => {
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
-      const { tokenInType, tokenInAmount, tokenOutType, tokenOutAmount } =
-        payload[0].payload;
-
       return (
         <div className="custom-tooltip">
           <p className="label" style={{ fontSize: "14px", fontWeight: "bold" }}>
             Date: {payload[0].payload.time}
           </p>
           <p className="intro" style={{ fontSize: "12px" }}>
-            Price Difference: {(payload[0].payload.price2 - payload[0].payload.price).toFixed(2)}
+            Price Difference:{" "}
+            {(payload[0].payload.price2 - payload[0].payload.price).toFixed(2)}
           </p>
           <p className="desc" style={{ fontSize: "12px" }}>
-            In: {(payload[0].payload.price).toFixed(2)}
+            In: {payload[0].payload.price.toFixed(2)}
           </p>
           <p className="desc" style={{ fontSize: "12px" }}>
-            Out: {(payload[0].payload.price2).toFixed(2)}
+            Out: {payload[0].payload.price2.toFixed(2)}
           </p>
         </div>
       );

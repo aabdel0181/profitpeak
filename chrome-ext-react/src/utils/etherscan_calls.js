@@ -265,3 +265,25 @@ export async function historicalData(inName, inAmt, outName, outAmt, time) {
     throw new Error(`Error fetching data: ${error}`);
   }
 }
+
+export async function netTransactions(transactions) {
+  let netUSD = 0;
+
+  for (const transaction of transactions) {
+      if (!transaction) continue;
+
+      // convert all token tickers to slug
+      const tokenIn = checkTickerExists(transaction.tokenInName);
+      const tokenOut = checkTickerExists(transaction.tokenOutName);
+      console.log(tokenIn, tokenOut);
+      // const fun = await historicalData(slugName, 1, slugName, 3, 1713658546);
+      const val = await historicalData(tokenIn, transaction.tokenInAmount, tokenOut, transaction.tokenOutAmount, transaction.timestamp);
+
+      const numIn = val.inData.prices[0][1]; 
+      const numOut = val.outData.prices[0][1];
+
+      netUSD += (numOut - numIn);
+  }
+
+  return netUSD;
+}
