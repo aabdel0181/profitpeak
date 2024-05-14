@@ -121,6 +121,33 @@ const Transactions = () => {
       item.tokenOutAmount,
       parseInt(fetchedTransactions[index].timestamp)
     );
+
+    // setChartData(
+    //   txns.map((transaction) => ({
+    //     name: new Date(transaction.time).toLocaleDateString(),
+    //     price: 1,
+    //     tokenInType: "a",
+    //     tokenInAmount: 2,
+    //     tokenOutType: "b",
+    //     tokenOutAmount: 3,
+    //   }))
+    // );
+    // time: "2022-01-03T00:00:00Z",
+    // tokenInType: "USDC",
+    // tokenInAmount: 8.432,
+    // tokenOutType: "ETH",
+    // tokenOutAmount: 1.43,
+    // price: 220,
+
+    setChartData(
+      out.inData.prices.map((item, index) => {
+        return {
+          time: new Date(item[0]).toLocaleDateString(),
+          price: item[1],
+        };
+      })
+    );
+
     console.log(out);
   };
 
@@ -135,7 +162,7 @@ const Transactions = () => {
             Date: {label}
           </p>
           <p className="intro" style={{ fontSize: "12px" }}>
-            Price: {payload[0].value}
+            Price Difference: {payload[0].value}
           </p>
           <p className="desc" style={{ fontSize: "12px" }}>
             In: {tokenInAmount} {tokenInType}
