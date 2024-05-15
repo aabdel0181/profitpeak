@@ -1,4 +1,4 @@
-# profitpeak
+# ProfitPeak - Crypto PnL Chrome Extension
 By Marc Vaz, Ahmed Abidallah, Chelsea Pan, and Rayyan Shaik
 
 <img src ="./static/pplogo.png" alt="Logo" style="width:20%;">
