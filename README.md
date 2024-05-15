@@ -1,4 +1,7 @@
 # profitpeak
+By Marc Vaz, Ahmed Abidallah, Chelsea Pan, and Rayyan Shaik
+
+<img src ="./static/pplogo.png" alt="Logo" style="width:20%;">
 
 ## Landing Page
 [https://marcvaz1.github.io/profitPeakLandingPage/](https://marcvaz1.github.io/profitPeakLandingPage/)
@@ -8,7 +11,7 @@
 
 ## Chrome Extension Short Demo
 
-<img src="./static/profitpeak_demo.gif" alt="Screenshot" style="width:50%;">
+<img src="./static/profitpeak_demo.gif" alt="Screenshot 1" style="width:50%;">
 
 ## How to load as extension
 
@@ -16,7 +19,7 @@
 2. Unzip the file, and consider the resulting folder (likely named `release_a_b`) to be the chrome extension's folder / dist folder
 3. Follow the `.gif` below to "load unpack" the chrome extension
 
-<img src="./static/LoadExtensionVid1080p.gif" alt="Screenshot" style="width:100%;">
+<img src="./static/LoadExtensionVid1080p.gif" alt="Screenshot 2" style="width:100%;">
 
 ## How to build locally
 
