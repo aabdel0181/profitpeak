@@ -7,7 +7,7 @@ By Marc Vaz, Ahmed Abidallah, Chelsea Pan, and Rayyan Shaik
 [https://marcvaz1.github.io/profitPeakLandingPage/](https://marcvaz1.github.io/profitPeakLandingPage/)
 
 ## Video Demonstration
-[https://drive.google.com/file/d/1ix7ziCldUymgyT08q8bOYNH0xOTlgmqj/view?usp=sharing](https://drive.google.com/file/d/1ix7ziCldUymgyT08q8bOYNH0xOTlgmqj/view?usp=sharing )
+[https://youtu.be/B53Sq4yq0EI](https://youtu.be/B53Sq4yq0EI)
 
 ## Chrome Extension Short Demo
 
